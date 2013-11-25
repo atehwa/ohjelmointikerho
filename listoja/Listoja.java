@@ -29,16 +29,16 @@ public class Listoja {
         while(ehka() || ehka() || ehka()) {
             List<String> sae;
             if (ehka() && ehka()) {
-                sae = lista(poimi(lista("oli kerran kaunis tyttö",
+                sae = lista(jokin("oli kerran kaunis tyttö",
                     "oli loitsua sisältä",
                     "suuren kerhon kauniit kasvot",
-                    "mutta se haisi isältä")));
+                    "mutta se haisi isältä"));
             } else {
                 sae = yhdista(
-                        poimi(lista("kauan sitten", "hädin tuskin",
-                                        "vaaran vuoksi", "sateen alla")),
-                        poimi(lista("sattui että", "ehti suojaan",
-                                        "väisti sivuun", "näki kurjen")));
+                        jokin("kauan sitten", "hädin tuskin",
+                                "vaaran vuoksi", "sateen alla"),
+                        jokin("sattui että", "ehti suojaan",
+                                "väisti sivuun", "näki kurjen"));
             }
             sano(sae);
         }
@@ -46,9 +46,9 @@ public class Listoja {
     
     static List<String> jokin_asia () {
         if (ehka()) {
-            return lista(poimi(listaksi("kissa ikkuna kuutio rakkaus")));
+            return lista(jokin(listaksi("kissa ikkuna kuutio rakkaus")));
         } else {
-            return yhdista(poimi(listaksi("suuri paljas terävä ihana")),
+            return yhdista(jokin(listaksi("suuri paljas terävä ihana")),
                     jokin_asia());
         }
     }
@@ -120,8 +120,12 @@ public class Listoja {
         return Arrays.asList(ss);
     }
     
-    public static <T> T poimi (List<T> ls) {
+    public static <T> T jokin (List<T> ls) {
         return ls.get(rand.nextInt(ls.size()));
+    }
+    
+    public static String jokin (String... ls) {
+        return ls[rand.nextInt(ls.length)];
     }
     
     public static <T> List<T> lista (T... sisalto) {
