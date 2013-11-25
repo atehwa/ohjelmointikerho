@@ -25,12 +25,32 @@ public class Listoja {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        sano(yhdista(jokin_asia(), "sanoo:"));
         while(ehka() || ehka() || ehka()) {
-            String sae = poimi(lista("oli kerran kaunis tyttö",
+            List<String> sae;
+            if (ehka() && ehka()) {
+                sae = lista(poimi(lista("oli kerran kaunis tyttö",
                     "oli loitsua sisältä",
                     "suuren kerhon kauniit kasvot",
-                    "mutta se haisi isältä"));
+                    "mutta se haisi isältä")));
+            } else {
+                sae = yhdista(
+                        poimi(lista("kauan sitten", "hädin tuskin",
+                                        "vaaran vuoksi", "sateen alla")),
+                        poimi(lista("sattui että", "ehti suojaan",
+                                        "väisti sivuun", "näki kurjen")));
+            }
             sano(sae);
+        }
+    }
+    
+    static List<String> jokin_asia () {
+        if (ehka()) {
+            return lista(poimi(lista("kissa", "ikkuna",
+                    "kuutio", "rakkaus")));
+        } else {
+            return yhdista(poimi(lista("suuri", "paljas",
+                    "terävä", "ihana")), jokin_asia());
         }
     }
     
@@ -95,6 +115,10 @@ public class Listoja {
         List<T> result = new ArrayList<T>(ls);
         result.add(elem);
         return result;
+    }
+    
+    public static List<String> yhdista(String s1, String s2) {
+        return lista(s1, s2);
     }
     
     public static <T> T poimi (List<T> ls) {
