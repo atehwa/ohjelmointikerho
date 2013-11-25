@@ -116,8 +116,8 @@ public class Listoja {
         return result;
     }
     
-    public static List<String> yhdista(String s1, String s2) {
-        return lista(s1, s2);
+    public static List<String> yhdista(String... ss) {
+        return Arrays.asList(ss);
     }
     
     public static <T> T poimi (List<T> ls) {
