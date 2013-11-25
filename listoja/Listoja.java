@@ -46,11 +46,10 @@ public class Listoja {
     
     static List<String> jokin_asia () {
         if (ehka()) {
-            return lista(poimi(lista("kissa", "ikkuna",
-                    "kuutio", "rakkaus")));
+            return lista(poimi(listaksi("kissa ikkuna kuutio rakkaus")));
         } else {
-            return yhdista(poimi(lista("suuri", "paljas",
-                    "terävä", "ihana")), jokin_asia());
+            return yhdista(poimi(listaksi("suuri paljas terävä ihana")),
+                    jokin_asia());
         }
     }
     
@@ -126,7 +125,7 @@ public class Listoja {
     }
     
     public static <T> List<T> lista (T... sisalto) {
-        return new ArrayList(Arrays.asList(sisalto));
+        return Arrays.asList(sisalto);
     }
     
     public static void sano(String juttu) {
@@ -151,6 +150,10 @@ public class Listoja {
     
     public static String sanaksi(Object o) {
         return "" + o;
+    }
+    
+    public static List<String> listaksi(String s) {
+        return Arrays.asList(s.split("\\s+"));
     }
     
     // TODO zip, map, filter, fold, crossmap
