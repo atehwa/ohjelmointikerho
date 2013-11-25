@@ -25,21 +25,13 @@ public class Listoja {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        List<String> x = lista("foo!", kysy("häh?"), "baz");
-        List<String> y = lista("jee", "buu");
-        List<String> z = yhdista(x, lista("moi", "boing"));
-        List<String> poks = yhdista(x, "jotain");
-        sano(poks);
-        sano("eka: " + eka(poks));
-        sano("toka: " + eka(loput(poks)));
-        sano("random: " + poimi(poks));
-        sano("z = poks? " + samatko(z, poks));
-        sano("moi in x? "  + loytyyko("moi", x));
-        sano("tyhjäkö: " + tyhjako(lista()));
-        sano(lista("poksin pituus", ""+pituus(poks), "ekan pituus",
-                ""+pituus(eka(poks))));
-        String nimi = kysy("Mikä hei on sun nimi?");
-        sano(lista("Mun mielestä", nimi, "on kaunis nimi"));
+        while(ehka() || ehka() || ehka()) {
+            String sae = poimi(lista("oli kerran kaunis tyttö",
+                    "oli loitsua sisältä",
+                    "suuren kerhon kauniit kasvot",
+                    "mutta se haisi isältä"));
+            sano(sae);
+        }
     }
     
     public static <T> boolean samatko (T o1, T o2) {
@@ -52,6 +44,14 @@ public class Listoja {
     
     public static <T> boolean loytyyko (T elem, List<T> ls) {
         return ls.contains(elem);
+    }
+    
+    public static boolean mahdollisesti (int todnakProsentti) {
+        return rand.nextInt(100) < todnakProsentti;
+    }
+    
+    public static boolean ehka () {
+        return mahdollisesti(50);
     }
     
     public static int pituus (List ls) {
