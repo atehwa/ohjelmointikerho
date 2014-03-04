@@ -35,7 +35,6 @@ copydef "pä "pd
 copydef "väri "setpencolor
 copydef "tausta "setbackground
 copydef "paksuus "setpensize
-load "varit.lg
 
 ;;; teksti
 
