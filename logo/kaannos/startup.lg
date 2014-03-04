@@ -1,12 +1,112 @@
+;;; piirtäminen
+
+;; liike
+
 copydef "et "fd
+copydef "eteen "fd
 copydef "ta "bk
+copydef "taakse "bk
 copydef "oi "rt
+copydef "oikealle "rt
 copydef "va "lt
-copydef "toista "repeat
-copydef "mon "repeat
-copydef "kerta "repcount
+copydef "vasemmalle "lt
+copydef "siirry "setxy
+copydef "kohtaan "setpos
+copydef "käänny "setheading
+copydef "origo "home
+copydef "paikka "pos
+copydef "asento "heading
+copydef "kohden "towards
+copydef "teksti "label
+
+;; ympäristö
+
+copydef "näkyviin "st
+copydef "piiloon "ht
+copydef "pyyhi "clean
+copydef "uusi "cs
+
+;; kynä
+
+copydef "äläpiirrä "pu
+copydef "äp "pu
+copydef "piirrä "pd
+copydef "pä "pd
 copydef "väri "setpencolor
 copydef "tausta "setbackground
 copydef "paksuus "setpensize
-
 load "varit.lg
+
+;;; teksti
+
+;; rivipohjaiset
+
+copydef "sano "print
+copydef "sanoalku "type
+copydef "näytä "show
+copydef "kysy "readlist
+copydef "kysysana "readword
+
+;; merkkipohjaiset
+
+copydef "näppäin "readchar
+copydef "painettuko "keyp
+copydef "tyhjennä "cleartext
+
+;;; ohjausrakenteet
+
+;; toisto
+
+copydef "toista "repeat
+copydef "toi "repeat
+copydef "kerta "repcount
+
+;;; tiedon käsittelijät
+
+;; luvut
+
+copydef "pyöristä "round
+to luettele :min :max
+  op iseq :min :max
+end
+copydef "satunnainen "random
+copydef "sat "random
+
+;; loogiset operaatiot
+
+copydef "sekä "and
+copydef "jokotai "or
+copydef "ei "not
+
+;; tietorakenteet
+
+copydef "sana "word
+copydef "lista "list
+copydef "yhdistä "se
+copydef "yhd "se
+copydef "alkuun "fput
+copydef "loppuun "lput
+to käännä :obj
+  op reverse :obj
+end
+copydef "eka "first
+copydef "loput "bf
+copydef "vika "last
+copydef "alut "bl
+copydef "kohta "item
+to jokin :lista
+  op pick :lista
+end
+copydef "pituus "count
+
+;; predikaatit
+
+copydef "sanako "wordp
+copydef "listako "listp
+copydef "tyhjäkö "emptyp
+copydef "samatko "equalp
+copydef "löytyykö "memberp
+copydef "osako "substringp
+copydef "numeroko "numberp
+
+
