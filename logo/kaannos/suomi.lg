@@ -19,7 +19,7 @@ copydef "asento "heading
 copydef "kohden "towards
 copydef "teksti "label
 
-;; ympäristö
+;; piirtoympäristö
 
 copydef "näkyviin "st
 copydef "piiloon "ht
@@ -42,7 +42,7 @@ copydef "paksuus "setpensize
 
 copydef "sano "print
 copydef "sanoalku "type
-copydef "näytä "show
+copydef "tulosta "show
 copydef "kysy "readlist
 copydef "kysysana "readword
 
@@ -60,11 +60,34 @@ copydef "nappi "button
 
 ;;; ohjausrakenteet
 
-;; toisto
+;; toistot ja ehdot
 
 copydef "toista "repeat
 copydef "toi "repeat
 copydef "kerta "repcount
+copydef "jos "if
+copydef "onko "test
+copydef "joson "iftrue
+copydef "josei "iffalse
+
+;; suoritus
+
+copydef "tee "run
+copydef "seis "stop
+copydef "on "output
+to lopeta
+ throw "toplevel
+end
+bury "lopeta
+copydef "odota "wait
+
+;; muuttujat
+
+.macro nimeä :name :value
+ op (list "local (word "" :name) "apply ""make (list :name :value))
+end
+bury "nimeä
+copydef "arvo "thing
 
 ;;; tiedon käsittelijät
 
@@ -74,6 +97,7 @@ copydef "pyöristä "round
 to luettele :min :max
   op iseq :min :max
 end
+bury "luettele
 copydef "satunnainen "random
 copydef "sat "random
 
@@ -81,7 +105,7 @@ copydef "sat "random
 
 copydef "sekä "and
 copydef "jokotai "or
-copydef "ei "not
+copydef "eiettä "not
 
 ;; tietorakenteet
 
@@ -94,6 +118,7 @@ copydef "loppuun "lput
 to käännä :obj
   op reverse :obj
 end
+bury "käännä
 copydef "eka "first
 copydef "loput "bf
 copydef "vika "last
@@ -102,6 +127,7 @@ copydef "kohta "item
 to jokin :lista
   op pick :lista
 end
+bury "jokin
 copydef "pituus "count
 
 ;; predikaatit
@@ -114,4 +140,15 @@ copydef "löytyykö "memberp
 copydef "osako "substringp
 copydef "numeroko "numberp
 
+;;; reflektio
+
+copydef "näytä "po
+copydef "seuraa "trace
+copydef "äläseuraa "untrace
+copydef "askella "step
+copydef "äläaskella "unstep
+copydef "muokkaa "edit
+copydef "tallenna "save
+copydef "lataa "load
+copydef "moikka "bye
 
