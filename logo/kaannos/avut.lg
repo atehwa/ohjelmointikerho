@@ -1,0 +1,12 @@
+
+to at :x :y :form
+  pu setxy :x :y pd
+  run :form
+end
+bury "at
+
+to liuu :pit
+  pu rt 90 fd :pit lt 90 pd
+end
+bury "liuu
+
