@@ -36,7 +36,7 @@ copydef "väri "setpencolor
 copydef "tausta "setbackground
 copydef "paksuus "setpensize
 
-;;; teksti
+;;; tuloste ja syöte
 
 ;; rivipohjaiset
 
@@ -51,6 +51,12 @@ copydef "kysysana "readword
 copydef "näppäin "readchar
 copydef "painettuko "keyp
 copydef "tyhjennä "cleartext
+
+;; hiiri
+
+copydef "hiiri "mousepos
+copydef "klikattuko "buttonp
+copydef "nappi "button
 
 ;;; ohjausrakenteet
 
