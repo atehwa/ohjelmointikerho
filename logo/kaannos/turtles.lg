@@ -7,8 +7,8 @@ to copyturtle
   localmake "oldturtle turtle
   saveturtlestate
   repeat 1000 [
-    if emptyp item turtle :.turtles [op :oldturtle]
     make ".curturtle :.curturtle + 1
+    if emptyp item turtle :.turtles [op :oldturtle]
   ]
   (throw "error [too many turtles])
 end
@@ -27,10 +27,11 @@ to turtle
 end
 
 to setturtle :ttl
+  if :ttl = turtle [stop]
   if emptyp item :ttl :.turtles [(throw "error se [no such turtle] :ttl)]
   saveturtlestate
   make ".curturtle :ttl
-  setturtlestate item :ttl turtles
+  setturtlestate item :ttl :.turtles
 end
 
 to turtlestate
