@@ -3,23 +3,14 @@ buryname ".turtles
 make ".curturtle 1
 buryname ".curturtle
 
-to copyturtle
-  localmake "oldturtle turtle
-  saveturtlestate
-  repeat 1000 [
-    make ".curturtle :.curturtle + 1
-    if emptyp item turtle :.turtles [op :oldturtle]
-  ]
-  (throw "error [too many turtles])
-end
-
-to deleteturtle :ttl
-  if :ttl = turtle [(throw "error [cannot delete current turtle])]
-  .setitem :ttl :.turtles []
-end
+;; changing turtles
 
 to saveturtlestate
   .setitem turtle :.turtles turtlestate
+end
+
+to markturtle
+  .setitem turtle :.turtles "current
 end
 
 to turtle
@@ -32,6 +23,7 @@ to setturtle :ttl
   saveturtlestate
   make ".curturtle :ttl
   setturtlestate item :ttl :.turtles
+  markturtle
 end
 
 to turtlestate
@@ -44,3 +36,41 @@ to setturtlestate :ttl
   setheading first bf :ttl
   setpen last :ttl
 end
+
+;; creating and deleting turtles
+
+to copyturtle
+  localmake "oldturtle turtle
+  saveturtlestate
+  repeat 1000 [
+    make ".curturtle :.curturtle + 1
+    if :.curturtle > 1000 [make ".curturtle 1]
+    if emptyp item turtle :.turtles [markturtle op :oldturtle]
+  ]
+  (throw "error [too many turtles])
+end
+
+to deleteturtle :ttl
+  if :ttl = turtle [(throw "error [cannot delete current turtle])]
+  .setitem :ttl :.turtles []
+end
+
+to resetturtles
+  make ".turtles array 1000
+  make ".curturtle 1
+end
+
+;; nice shorthands
+
+to spread :count
+  repeat :count [ignore copyturtle rt 360 / :count]
+end
+
+to allturtles
+  op filter [not emptyp item ? :.turtles] iseq 1 1000
+end
+
+to alldo :prog
+  foreach allturtles [setturtle ? run :prog]
+end
+
