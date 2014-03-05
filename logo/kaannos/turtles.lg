@@ -1,0 +1,45 @@
+make ".turtles array 1000
+buryname ".turtles
+make ".curturtle 1
+buryname ".curturtle
+
+to copyturtle
+  localmake "oldturtle turtle
+  saveturtlestate
+  repeat 1000 [
+    if emptyp item turtle :.turtles [op :oldturtle]
+    make ".curturtle :.curturtle + 1
+  ]
+  (throw "error [too many turtles])
+end
+
+to deleteturtle :ttl
+  if :ttl = turtle [(throw "error [cannot delete current turtle])]
+  .setitem :ttl :.turtles []
+end
+
+to saveturtlestate
+  .setitem turtle :.turtles turtlestate
+end
+
+to turtle
+  op :.curturtle
+end
+
+to setturtle :ttl
+  if emptyp item :ttl :.turtles [(throw "error se [no such turtle] :ttl)]
+  saveturtlestate
+  make ".curturtle :ttl
+  setturtlestate item :ttl turtles
+end
+
+to turtlestate
+  op (list pos heading pen)
+end
+
+to setturtlestate :ttl
+  pu
+  setpos first :ttl
+  setheading first bf :ttl
+  setpen last :ttl
+end
