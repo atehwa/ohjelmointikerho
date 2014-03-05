@@ -143,6 +143,11 @@ copydef "numeroko "numberp
 ;;; reflektio
 
 copydef "näytä "po
+to tuhoa :nimi
+  er :nimi
+  ern :nimi
+end
+bury "tuhoa
 copydef "seuraa "trace
 copydef "äläseuraa "untrace
 copydef "askella "step
