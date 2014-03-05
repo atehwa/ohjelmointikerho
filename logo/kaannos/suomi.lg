@@ -136,6 +136,7 @@ copydef "sanako "wordp
 copydef "listako "listp
 copydef "tyhjäkö "emptyp
 copydef "samatko "equalp
+copydef "aakkostuuko "beforep
 copydef "löytyykö "memberp
 copydef "osako "substringp
 copydef "numeroko "numberp
@@ -148,6 +149,14 @@ to tuhoa :nimi
   ern :nimi
 end
 bury "tuhoa
+to muuttujat
+  pons
+end
+bury "muuttujat
+to ohjelmat
+  pots
+end
+bury "ohjelmat
 copydef "seuraa "trace
 copydef "äläseuraa "untrace
 copydef "askella "step
