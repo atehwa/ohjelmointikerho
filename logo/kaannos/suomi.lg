@@ -10,13 +10,16 @@ copydef "oi "rt
 copydef "oikealle "rt
 copydef "va "lt
 copydef "vasemmalle "lt
-copydef "siirry "setxy
-copydef "kohtaan "setpos
-copydef "käänny "setheading
-copydef "origo "home
+copydef "xjay "setxy
+copydef "paikkaan "setpos
+copydef "asentoon "setheading
+copydef "origoon "home
 copydef "paikka "pos
 copydef "asento "heading
-copydef "kohden "towards
+to kohden :pos
+  seth towards :pos
+end
+bury "kohden
 copydef "teksti "label
 
 ;; piirtoympäristö
@@ -129,6 +132,10 @@ to jokin :lista
 end
 bury "jokin
 copydef "pituus "count
+to paitsi :juttu :lista
+  op remove :juttu :lista
+end
+bury "paitsi
 
 ;; predikaatit
 
