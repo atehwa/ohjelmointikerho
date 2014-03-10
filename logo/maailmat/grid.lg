@@ -1,0 +1,30 @@
+;;; primitives for moving in a 2d world
+
+;; worlds
+
+make "world (mdarray [21 21] -10)
+make "worldscale 15
+
+to blit.world :x :y :stuff
+  if emptyp :stuff [stop]
+  localmake "row first :stuff
+  repeat count :row [
+    mdsetitem (list :x + repcount :y) :world item repcount :row
+  ]
+  blit.world :x :y + 1 bf :stuff
+end
+
+to draw.world
+  localmake "oldturtle turtlestate
+  ht
+  for [y -10 10] [for [x -10 10] [draw.cell :x :y]]
+  setturtlestate :oldturtle
+end
+
+to draw.cell :x :y
+  pu setxy :x * :worldscale :y * :worldscale pd
+  localmake "block (mditem (list :x :y) :world)
+  if not emptyp :block [run :block]
+end
+
+
