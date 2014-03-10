@@ -1,0 +1,175 @@
+;;; piirtäminen
+
+;; liike
+
+copydef "et "fd
+copydef "eteen "fd
+copydef "ta "bk
+copydef "taakse "bk
+copydef "oi "rt
+copydef "oikealle "rt
+copydef "va "lt
+copydef "vasemmalle "lt
+copydef "xjay "setxy
+copydef "paikkaan "setpos
+copydef "asentoon "setheading
+copydef "origoon "home
+copydef "paikka "pos
+copydef "asento "heading
+to kohden :pos
+  seth towards :pos
+end
+bury "kohden
+copydef "teksti "label
+
+;; piirtoympäristö
+
+copydef "näkyviin "st
+copydef "piiloon "ht
+copydef "pyyhi "clean
+copydef "uusi "cs
+
+;; kynä
+
+copydef "äläpiirrä "pu
+copydef "äp "pu
+copydef "piirrä "pd
+copydef "pä "pd
+copydef "väri "setpencolor
+copydef "tausta "setbackground
+copydef "paksuus "setpensize
+
+;;; tuloste ja syöte
+
+;; rivipohjaiset
+
+copydef "sano "print
+copydef "sanoalku "type
+copydef "tulosta "show
+copydef "kysy "readlist
+copydef "kysysana "readword
+
+;; merkkipohjaiset
+
+copydef "näppäin "readchar
+copydef "painettuko "keyp
+copydef "tyhjennä "cleartext
+
+;; hiiri
+
+copydef "hiiri "mousepos
+copydef "klikattuko "buttonp
+copydef "nappi "button
+
+;;; ohjausrakenteet
+
+;; toistot ja ehdot
+
+copydef "toista "repeat
+copydef "toi "repeat
+copydef "kerta "repcount
+copydef "jos "if
+copydef "onko "test
+copydef "joson "iftrue
+copydef "josei "iffalse
+
+;; suoritus
+
+copydef "tee "run
+copydef "seis "stop
+copydef "on "output
+to lopeta
+ throw "toplevel
+end
+bury "lopeta
+copydef "odota "wait
+
+;; muuttujat
+
+.macro nimeä :name :value
+ op (list "local (word "" :name) "apply ""make (list :name :value))
+end
+bury "nimeä
+copydef "arvo "thing
+
+;;; tiedon käsittelijät
+
+;; luvut
+
+copydef "pyöristä "round
+to luettele :min :max
+  op iseq :min :max
+end
+bury "luettele
+copydef "satunnainen "random
+copydef "sat "random
+
+;; loogiset operaatiot
+
+copydef "sekä "and
+copydef "jokotai "or
+copydef "eiettä "not
+
+;; tietorakenteet
+
+copydef "sana "word
+copydef "lista "list
+copydef "yhdistä "se
+copydef "yhd "se
+copydef "alkuun "fput
+copydef "loppuun "lput
+to käännä :obj
+  op reverse :obj
+end
+bury "käännä
+copydef "eka "first
+copydef "loput "bf
+copydef "vika "last
+copydef "alut "bl
+copydef "kohta "item
+to jokin :lista
+  op pick :lista
+end
+bury "jokin
+copydef "pituus "count
+to paitsi :juttu :lista
+  op remove :juttu :lista
+end
+bury "paitsi
+
+;; predikaatit
+
+copydef "sanako "wordp
+copydef "listako "listp
+copydef "tyhjäkö "emptyp
+copydef "samatko "equalp
+copydef "aakkostuuko "beforep
+copydef "löytyykö "memberp
+copydef "osako "substringp
+copydef "numeroko "numberp
+
+;;; reflektio
+
+copydef "näytä "po
+to tuhoa :nimi
+  er :nimi
+  ern :nimi
+end
+bury "tuhoa
+to muuttujat
+  pons
+end
+bury "muuttujat
+to ohjelmat
+  pots
+end
+bury "ohjelmat
+copydef "seuraa "trace
+copydef "äläseuraa "untrace
+copydef "askella "step
+copydef "äläaskella "unstep
+copydef "muokkaa "edit
+copydef "tallenna "save
+copydef "lataa "load
+copydef "moikka "bye
+

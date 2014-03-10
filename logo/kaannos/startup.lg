@@ -1,0 +1,4 @@
+load "suomi.lg
+load "varit.lg
+load "avut.lg
+seteditor "/usr/bin/gedit
