@@ -1,30 +1,86 @@
 ;;; primitives for moving in a 2d world
 
-;; worlds
+;; grids
 
-make "world (mdarray [21 21] -10)
-make "worldscale 15
+to newgrid :xdim :ydim [:xscale 16] [:yscale 16] [:xoff 0] [:yoff 0]
+  op `[[[,:xdim ,:ydim] [,:xscale ,:yscale] [,:xoff ,:yoff]]
+       ,[(mdarray (list :xdim :ydim) 0)]]
+end
 
-to blit.world :x :y :stuff
+to grid.memvars :grid
+  localmake "memvars first :grid
+  localmake "dims first :memvars
+  localmake "scales first bf :memvars
+  localmake "offsets last :memvars
+  make "xdim first :dims
+  make "ydim last :dims
+  make "xscale first :scales
+  make "yscale last :scales
+  make "xoff first :offsets
+  make "yoff last :offsets
+end
+
+to coord.unpack :coord
+  make "x first :coord
+  make "y last :coord
+end
+
+to grid.cell :grid :coord
+  local [xdim ydim xscale yscale xoff yoff x y]
+  grid.memvars :grid
+  coord.unpack :coord
+  op list int (:x - :xoff) / :xscale int (:y - :yoff) / :yscale
+end
+
+to grid.pos :grid :coord
+  local [xdim ydim xscale yscale xoff yoff x y]
+  grid.memvars :grid
+  coord.unpack :coord
+  op list :x * :xscale + :xoff :y * :yscale + :yoff
+end
+
+to grid.at :grid :coord
+  local [x y xdim ydim]
+  coord.unpack :coord
+  make "xdim first first first :grid
+  make "ydim last first first :grid
+  if (or :x < 0 :y < 0 :x >= :xdim :y >= :ydim) [op []]
+  op mditem :coord last :grid
+end
+
+to grid.set :grid :coord :block
+  local [x y xdim ydim]
+  coord.unpack :coord
+  make "xdim first first first :grid
+  make "ydim last first first :grid
+  if (or :x < 0 :y < 0 :x >= :xdim :y >= :ydim) [stop]
+  mdsetitem :coord last :grid :block
+end
+
+to grid.blit :grid :x :y :stuff
   if emptyp :stuff [stop]
   localmake "row first :stuff
   repeat count :row [
-    mdsetitem (list :x + repcount :y) :world item repcount :row
+    grid.set :grid (list :x + repcount :y) item repcount :row
   ]
-  blit.world :x :y + 1 bf :stuff
+  grid.blit :x :y + 1 bf :stuff
 end
 
-to draw.world
-  localmake "oldturtle turtlestate
+;; drawing
+
+to grid.draw :grid
+  local [xdim ydim xscale yscale xoff yoff oldturtle]
+  grid.memvars :grid
+  make "oldturtle turtlestate
   ht
-  for [y -10 10] [for [x -10 10] [draw.cell :x :y]]
+  repeat :ydim [
+   localmake "y repcount - 1
+   repeat :xdim [
+    localmake "x repcount - 1
+    pu setxy :x * :xscale + :xoff :y * :yscale + :yoff pd
+    localmake "block (mditem (list :x :y) last :grid)
+    if not emptyp :block [run :block]
+  ]]
   setturtlestate :oldturtle
 end
-
-to draw.cell :x :y
-  pu setxy :x * :worldscale :y * :worldscale pd
-  localmake "block (mditem (list :x :y) :world)
-  if not emptyp :block [run :block]
-end
-
 
