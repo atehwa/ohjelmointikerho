@@ -48,6 +48,10 @@ to grid.at :grid :coord
   op mditem :coord last :grid
 end
 
+to grid.atpos :grid :coord
+  op grid.at :grid grid.cell :grid :coord
+end
+
 to grid.set :grid :coord :block
   local [x y xdim ydim]
   coord.unpack :coord
@@ -63,7 +67,7 @@ to grid.blit :grid :x :y :stuff
   repeat count :row [
     grid.set :grid (list :x + repcount :y) item repcount :row
   ]
-  grid.blit :x :y + 1 bf :stuff
+  grid.blit :grid :x :y + 1 bf :stuff
 end
 
 ;; drawing
@@ -82,5 +86,56 @@ to grid.draw :grid
     if not emptyp :block [run :block]
   ]]
   setturtlestate :oldturtle
+end
+
+;; collisions
+
+to transpose :coord
+  op list last :coord first :coord
+end
+
+to offset :coord :x :y
+  op list (first :coord) + :x (last :coord) + :y
+end
+
+to seqbetween :min :max :step
+  if :min > :max [op []]
+  op fput :min seqbetween :min + :step :max :step
+end
+
+to grid.xcollisions :off :scale :pos1 :pos2
+  if (first :pos2) < (first :pos1) ~
+     [op grid.xcollisions :off :scale :pos2 :pos1]
+  localmake "firstx ((int ((first :pos1) - :off) / :scale) + 1)
+  make "firstx :firstx * :scale + :off
+  localmake "xs seqbetween :firstx first :pos2 :scale
+  localmake "yd (last :pos2) - (last :pos1)
+  localmake "xd (first :pos2) - (first :pos1)
+  localmake "tilt :yd / :xd
+  op map [list ? (? - (first :pos1)) * :tilt + (last :pos1)] :xs
+end
+
+to grid.ycollisions :off :scale :pos1 :pos2
+  localmake "res grid.xcollisions :off :scale transpose :pos1 transpose :pos2
+  op map "transpose :res
+end
+
+to grid.blocksat :grid :coord :dir
+  local [x y]
+  coord.unpack :coord
+  localmake "cs ifelse :dir = "x ~
+     [list list :x - .01 :y list :x + .01 :y] ~
+     [list list :x :y - .01 list :x :y + .01]
+  op fput :dir map [grid.atpos :grid ?] :cs
+end
+
+to grid.collisions :grid :pos1 :pos2
+  local [xdim ydim xscale yscale xoff yoff]
+  grid.memvars :grid
+  localmake "posx grid.xcollisions :xoff :xscale :pos1 :pos2
+  localmake "posy grid.ycollisions :yoff :yscale :pos1 :pos2
+  localmake "collx map [list ? grid.blocksat :grid ? "x] :posx
+  localmake "colly map [list ? grid.blocksat :grid ? "y] :posy
+  op se :collx :colly
 end
 
