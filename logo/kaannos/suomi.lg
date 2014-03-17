@@ -10,7 +10,7 @@ copydef "oi "rt
 copydef "oikealle "rt
 copydef "va "lt
 copydef "vasemmalle "lt
-copydef "xjay "setxy
+copydef "meexy "setxy
 copydef "paikkaan "setpos
 copydef "asentoon "setheading
 copydef "origoon "home
@@ -69,6 +69,7 @@ copydef "toista "repeat
 copydef "toi "repeat
 copydef "kerta "repcount
 copydef "jos "if
+copydef "riippuen "ifelse
 copydef "onko "test
 copydef "joson "iftrue
 copydef "josei "iffalse
@@ -77,12 +78,13 @@ copydef "josei "iffalse
 
 copydef "tee "run
 copydef "seis "stop
-copydef "on "output
+copydef "anna "output
 to lopeta
  throw "toplevel
 end
 bury "lopeta
 copydef "odota "wait
+copydef "miten "to
 
 ;; muuttujat
 
