@@ -82,12 +82,12 @@ ei
 valmis
 ; Some names of primitives treated specially in the evaluator
 ; (You still have to COPYDEF them to match any changes here.)
-on
+anna
 seis
 goto
 tag
 jos
-ifelse
+riippuen
 miten
 .macro
 ; Special CATCH tags
