@@ -58,6 +58,7 @@ end
 to resetturtles
   make ".turtles array 1000
   make ".curturtle 1
+  markturtle
 end
 
 ;; nice shorthands
@@ -70,7 +71,7 @@ to allturtles
   op filter [not emptyp item ? :.turtles] iseq 1 1000
 end
 
-to alldo :prog
-  foreach allturtles [setturtle ? run :prog]
+to alldo :.prog
+  foreach allturtles [setturtle ? run :.prog]
 end
 

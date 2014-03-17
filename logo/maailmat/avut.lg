@@ -1,12 +1,16 @@
 
-to at :x :y :form
-  pu setxy :x :y pd
-  run :form
+to jump :length
+  pu fd :length pd
 end
-bury "at
+bury "jump
 
-to liuu :pit
-  pu rt 90 fd :pit lt 90 pd
+to jumpto :x :y
+  pu setxy :x :y pd
 end
-bury "liuu
+bury "jumpto
+
+to stride :len
+  rt 90 jump :len lt 90
+end
+bury "stride
 

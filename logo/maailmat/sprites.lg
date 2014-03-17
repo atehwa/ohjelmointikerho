@@ -1,0 +1,21 @@
+Make "sprites []
+
+to makesprite :prog
+  make "oldturtle copyturtle
+  make "sprites fput list turtle :prog :sprites
+  setturtle :oldturtle
+end
+
+to update
+  foreach :sprites [setturtle first ? run last ?]
+end
+
+to animate :times :delay
+  repeat :times [clean update wait :delay]
+end
+
+to resetsprites
+  make "sprites []
+  resetturtles
+end
+
