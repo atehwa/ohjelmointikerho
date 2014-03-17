@@ -1,0 +1,3 @@
+#!/bin/sh
+test -z "$EDITOR" && EDITOR=/usr/bin/gedit
+rlwrap logo
