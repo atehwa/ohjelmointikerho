@@ -68,8 +68,8 @@ vain ohjelman sisällä voi käyttää komentoja ANNA ja SEIS.
 varoitus: en pysty vapauttamaan muistia, koska siihen ei ole tarpeksi muistia.
 roskankeruu kytketty päältä - talleta työsi äkkiä!
 %s määritelty\n
-Make %s %s
-to %p\nend\n\n
+Aseta %s %s
+miten %p\n\nvalmis\n\n
 Plist %s = %s\n
 Ei löydy apua.\n
 Ei löydy apua aiheesta %p.\n

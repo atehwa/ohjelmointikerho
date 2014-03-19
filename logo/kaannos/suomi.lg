@@ -92,6 +92,7 @@ copydef "miten "to
  op (list "local (word "" :name) "apply ""make (list :name :value))
 end
 bury "nimeä
+copydef "aseta "make
 copydef "arvo "thing
 
 ;;; tiedon käsittelijät
@@ -171,6 +172,7 @@ copydef "äläseuraa "untrace
 copydef "askella "step
 copydef "äläaskella "unstep
 copydef "muokkaa "edit
+copydef "muo "edit
 copydef "tallenna "save
 copydef "lataa "load
 copydef "moikka "bye
