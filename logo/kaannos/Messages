@@ -13,10 +13,10 @@ kilpikonna meni liian kauas
 %p haluaa vähemmän syötteitä
 tulos on %s, mutta mitä sillä tehdään?
 liikaa (avaavia) sulkeita
-muuttujaa %s ei ole määritetty
+muuttujaa %s ei ole määritelty
 ylimääräinen ')' eli sulkeva sulje
 en tiedä miten tehdä %p
-mikään ei ota kiinni heitettyä tagia %p
+mikään ei ota kiinni tagia %p, jonka heitit
 %p on jo määritelty
 pysäytän...
 kirjoitan jo lokia
@@ -24,8 +24,8 @@ tiedostovirhe: %p
 tarkoitit varmaankin RIIPPUEN etkä JOS
 nimi %p on peittynyt LOCAL-komennolla
 Throw "Error
-%p on sisäänrakennettu komento
-MITEN-rakennetta ei voi käyttää ohjelman sisällä
+%p on sisäänrakennettu komento (sitä ei ole määritelty MITEN-rakenteella)
+MITEN-rakennetta ei voi käyttää ohjelmamäärittelyn sisällä
 en tiedä miten tehdä %p
 %p ilman vastaavaa ONKO-komentoa
 ylimääräinen ']' eli sulkeva hakasulje
@@ -33,15 +33,15 @@ ylimääräinen '}' eli sulkeva aaltosulje
 en saa piirretyksi näytöllesi mitään
 makrosta ei ollut tuloksena lista vaan %s
 tulos on %s, mutta mitä sillä tehdään?
-rakennetta %p voi käyttää vain ohjelman sisällä
+rakennetta %p voi käyttää vain ohjelmamäärittelyn sisällä
 APPLY ei ymmärrä sellaista syötettä kuin %s
 ylimääräinen END keskellä monirivistä komentoa ohjelmassa %p
 Logo: muisti loppui.
 %p
 ylimääräinen END keskellä monirivistä komentoa
-tämä on huono oletusarvo syötteelle: %s
+tämä on huono syötteen oletusarvoksi: %s
 RUNRESULT-komennossa ei voi käyttää komentoja ANNA ja SEIS
-tarkoitit varmaankin '%p' eikä %p
+tarkoitit varmaankin '%p' etkä %p
 en saa auki tiedostoa %p
 olen jo avannut tiedoston %p
 tiedosto %p ei ole auki
@@ -57,14 +57,14 @@ keskeytän...
 keskeytyy
 antaa tulokseksi
 ei löytynyt tiedostoa: %t\n
-en osaa KEYP-komentoa koska järjestelmäsi ei anna siihen mahkuja
+en pysty toteuttamaan KEYP-komentoa koska järjestelmäsi ei anna siihen mahkuja
 muisti ei riitä
 en voi avata tuota tiedostoa
 tiedosto on jo auki
 tiedosto ei ole auki
 Pprop
 Tervetuloa Berkeley Logon versioon %t
-vain ohjelman sisällä voi käyttää komentoja ANNA ja SEIS.
+vain ohjelmamäärittelyn sisällä voi käyttää komentoja ANNA ja SEIS.
 varoitus: en pysty vapauttamaan muistia, koska siihen ei ole tarpeksi muistia.
 roskankeruu kytketty päältä - talleta työsi äkkiä!
 %s määritelty\n

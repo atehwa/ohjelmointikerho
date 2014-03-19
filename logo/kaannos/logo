@@ -1,3 +1,3 @@
 #!/bin/sh
-test -z "$EDITOR" && EDITOR=/usr/bin/gedit
+test -z "$EDITOR" && export EDITOR=/usr/bin/gedit
 rlwrap logo

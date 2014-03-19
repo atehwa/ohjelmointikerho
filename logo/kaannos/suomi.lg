@@ -73,6 +73,14 @@ copydef "riippuen "ifelse
 copydef "onko "test
 copydef "joson "iftrue
 copydef "josei "iffalse
+to joo
+  op "joo
+end
+bury "joo
+to ei
+  op "ei
+end
+bury "ei
 
 ;; suoritus
 
