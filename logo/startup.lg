@@ -1,3 +1,8 @@
 load "kaannos/suomi.lg
 load "kaannos/varit.lg
 make "UseAlternateNames "true
+to maailma :nimi
+  if listp :nimi [foreach :nimi "maailma stop]
+  load (word "maailmat/ :nimi ".lg)
+end
+bury "maailma
