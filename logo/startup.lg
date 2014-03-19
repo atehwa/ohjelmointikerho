@@ -1,0 +1,3 @@
+load "kaannos/suomi.lg
+load "kaannos/varit.lg
+make "UseAlternateNames "true
