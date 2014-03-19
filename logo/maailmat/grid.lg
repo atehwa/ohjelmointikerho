@@ -109,8 +109,9 @@ to grid.xcollisions :off :scale :pos1 :pos2
   localmake "firstx ((int ((first :pos1) - :off) / :scale) + 1)
   make "firstx :firstx * :scale + :off
   localmake "xs seqbetween :firstx first :pos2 :scale
-  localmake "yd (last :pos2) - (last :pos1)
   localmake "xd (first :pos2) - (first :pos1)
+  if :xd = 0 [op []]
+  localmake "yd (last :pos2) - (last :pos1)
   localmake "tilt :yd / :xd
   op map [list ? (? - (first :pos1)) * :tilt + (last :pos1)] :xs
 end
@@ -137,5 +138,37 @@ to grid.collisions :grid :pos1 :pos2
   localmake "collx map [list ? grid.blocksat :grid ? "x] :posx
   localmake "colly map [list ? grid.blocksat :grid ? "y] :posy
   op se :collx :colly
+end
+
+to grid.transitions :grid :pos1 :pos2
+  op filter [not (first bf last ?) = (last last ?)] ~
+     grid.collisions :grid :pos1 :pos2
+end
+
+to distance2 :pos1 :pos2
+   localmake "xd (first :pos1) - (first :pos2)
+   localmake "yd (last :pos1) - (last :pos2)
+   op :xd * :xd + :yd * :yd
+end
+
+to grid.closestto :pos :coll
+  if emptyp :coll [op []]
+  if emptyp bf :coll [op first :coll]
+  localmake "res grid.closestto :pos bf :coll
+  if (distance2 :pos first :res) < (distance2 :pos first first :coll) ~
+     [op :res]
+  op first :coll
+end
+
+to grid.firsthit :grid :pos1 :pos2
+  op grid.closestto :pos1 grid.transitions :grid :pos1 :pos2
+end
+
+to move.protected :.move
+  localmake ".srcpos pos
+  run :.move
+  localmake ".firsthit grid.firsthit :world :.srcpos pos
+  if emptyp :.firsthit [stop]
+  foreach bf last :.firsthit [if not emptyp ? [collide first :.firsthit ?]]
 end
 
