@@ -73,9 +73,9 @@ end
 ;; drawing
 
 to grid.draw :grid
-  local [xdim ydim xscale yscale xoff yoff oldturtle]
+  local [xdim ydim xscale yscale xoff yoff]
   grid.memvars :grid
-  make "oldturtle turtlestate
+  localmake "oldpos pos
   ht
   repeat :ydim [
    localmake "y repcount - 1
@@ -85,7 +85,7 @@ to grid.draw :grid
     localmake "block (mditem (list :x :y) last :grid)
     if not emptyp :block [run :block]
   ]]
-  setturtlestate :oldturtle
+  pu setpos :oldpos pd
 end
 
 ;; collisions
@@ -125,9 +125,9 @@ to grid.blocksat :grid :coord :dir
   local [x y]
   coord.unpack :coord
   localmake "cs ifelse :dir = "x ~
-     [list list :x - .01 :y list :x + .01 :y] ~
-     [list list :x :y - .01 list :x :y + .01]
-  op fput :dir map [grid.atpos :grid ?] :cs
+     [list grid.cell :grid list :x - .01 :y grid.cell :grid list :x + .01 :y] ~
+     [list grid.cell :grid list :x :y - .01 grid.cell :grid list :x :y + .01]
+  op map [fput grid.at :grid ? ?] :cs
 end
 
 to grid.collisions :grid :pos1 :pos2
@@ -141,7 +141,7 @@ to grid.collisions :grid :pos1 :pos2
 end
 
 to grid.transitions :grid :pos1 :pos2
-  op filter [not (first bf last ?) = (last last ?)] ~
+  op filter [not (first first last ?) = (first last last ?)] ~
      grid.collisions :grid :pos1 :pos2
 end
 
@@ -155,8 +155,7 @@ to grid.closestto :pos :coll
   if emptyp :coll [op []]
   if emptyp bf :coll [op first :coll]
   localmake "res grid.closestto :pos bf :coll
-  if (distance2 :pos first :res) < (distance2 :pos first first :coll) ~
-     [op :res]
+  if (distance2 :pos first :res) < (distance2 :pos first first :coll) [op :res]
   op first :coll
 end
 
@@ -169,6 +168,7 @@ to move.protected :.move
   run :.move
   localmake ".firsthit grid.firsthit :world :.srcpos pos
   if emptyp :.firsthit [stop]
-  foreach bf last :.firsthit [if not emptyp ? [collide first :.firsthit ?]]
+  foreach last :.firsthit [if not emptyp first ? 
+    [apply word first ? ".collide fput first :.firsthit bf ?]]
 end
 
