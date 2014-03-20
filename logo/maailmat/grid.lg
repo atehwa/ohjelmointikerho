@@ -94,10 +94,6 @@ to transpose :coord
   op list last :coord first :coord
 end
 
-to offset :coord :x :y
-  op list (first :coord) + :x (last :coord) + :y
-end
-
 to seqbetween :min :max :step
   if :min > :max [op []]
   op fput :min seqbetween :min + :step :max :step

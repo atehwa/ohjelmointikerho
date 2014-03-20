@@ -3,7 +3,7 @@ buryname ".turtles
 make ".curturtle 1
 buryname ".curturtle
 
-;; changing turtles
+;; turtle bookkeeping
 
 to saveturtlestate
   .setitem turtle :.turtles turtlestate
@@ -13,21 +13,35 @@ to markturtle
   .setitem turtle :.turtles "current
 end
 
+to checkturtle :ttl
+  if emptyp item :ttl :.turtles [(throw "error se [no such turtle] :ttl)]
+end
+
+;; turtle queries
+
 to turtle
   op :.curturtle
 end
 
-to setturtle :ttl
-  if :ttl = turtle [stop]
-  if emptyp item :ttl :.turtles [(throw "error se [no such turtle] :ttl)]
-  saveturtlestate
-  make ".curturtle :ttl
-  setturtlestate item :ttl :.turtles
-  markturtle
+to turtlepos :ttl
+  checkturtle :ttl
+  if :ttl = turtle [op pos]
+  op first item :ttl :.turtles
 end
 
 to turtlestate
   op (list pos heading pen)
+end
+
+;; changing turtles
+
+to setturtle :ttl
+  if :ttl = turtle [stop]
+  checkturtle :ttl
+  saveturtlestate
+  make ".curturtle :ttl
+  setturtlestate item :ttl :.turtles
+  markturtle
 end
 
 to setturtlestate :ttl
