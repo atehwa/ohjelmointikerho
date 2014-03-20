@@ -41,19 +41,30 @@ to makecollisions :grid :src :dst
 end
 
 to move.protected :.move
-  checkcollisions
+  make ".lastpos pos
   run :.move
   checkcollisions
 end
 
-to protect.command :cmd
+to redefine.command :cmd :defn
   make "redefp "true
-  localmake "origcmd word :cmd ".orig
+  localmake "origcmd word :cmd ".original
   copydef :origcmd :cmd
-  define :cmd `[[arg] [move.protected [apply ,[word "" :origcmd] (list :arg)]]]
+  define :cmd invoke :defn :origcmd
   bury :cmd
   make "redefp "false
 end
 
+to moveprotect.command :cmd
+  redefine.command :cmd ~
+     [`[[arg1] [move.protected [apply ,[word "" ?] (list :arg1)]]]]
+end
+
+to moveprotect2.command :cmd
+  redefine.command :cmd ~
+     [`[[arg1 arg2] [move.protected [apply ,[word "" ?] (list :arg1 :arg2)]]]]
+end
+
 foreach [fd forward et eteen bk back ta taakse setpos paikkaan setx sety] ~
-   "protect.command
+   "moveprotect.command
+foreach [setxy meexy] "moveprotect2.command
