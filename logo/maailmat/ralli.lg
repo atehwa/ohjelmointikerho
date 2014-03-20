@@ -1,5 +1,11 @@
 maailma "grid
 
+;; the world
+
+;world.initialise "ralli/esim.wld
+
+;; finding hit tiles from a world
+
 to distance2 :pos1 :pos2
    localmake "xd (first :pos1) - (first :pos2)
    localmake "yd (last :pos1) - (last :pos2)
@@ -18,21 +24,36 @@ to grid.firsthit :grid :pos1 :pos2
   op grid.closestto :pos1 grid.transitions :grid :pos1 :pos2
 end
 
-to move.protected :.move
-  localmake ".srcpos pos
-  run :.move
-  localmake ".firsthit grid.firsthit :world :.srcpos pos
-  if emptyp :.firsthit [stop]
-  foreach last :.firsthit [if not emptyp first ? 
-    [apply word first ? ".collide fput first :.firsthit bf ?]]
+;; moving with checked collisions
+
+Make ".lastpos []
+
+to checkcollisions
+  if not emptyp :.lastpos [makecollisions :world :.lastpos pos]
+  make ".lastpos pos
 end
 
-;; FIXME: this changes :cmd's default arity
+to makecollisions :grid :src :dst
+  localmake "firsthit grid.firsthit :grid :src :dst
+  if emptyp :firsthit [stop]
+  foreach last :firsthit [if not emptyp first ? 
+    [apply word first ? ".collide fput first :firsthit bf ?]]
+end
+
+to move.protected :.move
+  checkcollisions
+  run :.move
+  checkcollisions
+end
+
 to protect.command :cmd
   make "redefp "true
   localmake "origcmd word :cmd ".orig
   copydef :origcmd :cmd
-  define :cmd `[[[args]] [move.protected [apply ,[word "" :origcmd] :args]]]
+  define :cmd `[[arg] [move.protected [apply ,[word "" :origcmd] (list :arg)]]]
+  bury :cmd
   make "redefp "false
 end
 
+foreach [fd forward et eteen bk back ta taakse setpos paikkaan setx sety] ~
+   "protect.command
