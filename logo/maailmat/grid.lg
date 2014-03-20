@@ -145,30 +145,3 @@ to grid.transitions :grid :pos1 :pos2
      grid.collisions :grid :pos1 :pos2
 end
 
-to distance2 :pos1 :pos2
-   localmake "xd (first :pos1) - (first :pos2)
-   localmake "yd (last :pos1) - (last :pos2)
-   op :xd * :xd + :yd * :yd
-end
-
-to grid.closestto :pos :coll
-  if emptyp :coll [op []]
-  if emptyp bf :coll [op first :coll]
-  localmake "res grid.closestto :pos bf :coll
-  if (distance2 :pos first :res) < (distance2 :pos first first :coll) [op :res]
-  op first :coll
-end
-
-to grid.firsthit :grid :pos1 :pos2
-  op grid.closestto :pos1 grid.transitions :grid :pos1 :pos2
-end
-
-to move.protected :.move
-  localmake ".srcpos pos
-  run :.move
-  localmake ".firsthit grid.firsthit :world :.srcpos pos
-  if emptyp :.firsthit [stop]
-  foreach last :.firsthit [if not emptyp first ? 
-    [apply word first ? ".collide fput first :.firsthit bf ?]]
-end
-
