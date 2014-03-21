@@ -183,5 +183,5 @@ copydef "muokkaa "edit
 copydef "muo "edit
 copydef "tallenna "save
 copydef "lataa "load
-copydef "moikka "bye
+copydef "moiks "bye
 

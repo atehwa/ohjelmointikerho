@@ -21,13 +21,8 @@ to movedir :dir :len
 end
 copydef "suuntaan "movedir
 
-to visit :len
-  fd :len bk :len
-end
-copydef "käväise "visit
-
 to stride :len
-  rt 90 jump :len lt 90
+  movedir 90 :len
 end
 copydef "liuu "stride
 
@@ -39,7 +34,7 @@ to pystyyn :pit
   sety ycor + :pit
 end
 
-bury [jump hyps jumpto hypsxy jumppos hypspaik movedir suuntaan visit käväise
+bury [jump hyps jumpto hypsxy jumppos hypspaik movedir suuntaan
       stride liuu vaakaan pystyyn]
 
 ;; remembered places
@@ -49,10 +44,12 @@ buryname ".places
 
 to remember
   push ".places pos
+  push ".places heading
 end
 copydef "muista "remember
 
 to return
+  setheading pop ".places
   jumppos pop ".places
 end
 copydef "palaa "return
