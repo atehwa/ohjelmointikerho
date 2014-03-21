@@ -22,7 +22,7 @@ end
 copydef "suuntaan "movedir
 
 to stride :len
-  movedir 90 :len
+  pu movedir 90 :len pd
 end
 copydef "liuu "stride
 
