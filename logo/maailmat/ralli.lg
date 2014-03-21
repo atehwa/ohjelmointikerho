@@ -1,11 +1,5 @@
 maailma "grid
 
-to distance2 :pos1 :pos2
-   localmake "xd (first :pos1) - (first :pos2)
-   localmake "yd (last :pos1) - (last :pos2)
-   op :xd * :xd + :yd * :yd
-end
-
 to grid.closestto :pos :coll
   if emptyp :coll [op []]
   if emptyp bf :coll [op first :coll]

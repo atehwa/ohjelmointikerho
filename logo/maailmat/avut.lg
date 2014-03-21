@@ -1,16 +1,93 @@
 
+;; misc movement stuff
+
 to jump :length
   pu fd :length pd
 end
-bury "jump
+copydef "hyps "jump
 
 to jumpto :x :y
   pu setxy :x :y pd
 end
-bury "jumpto
+copydef "hypsxy "jumpto
+
+to jumppos :pos
+  pu setpos :pos pd
+end
+copydef "hypspaik "jumppos
+
+to movedir :dir :len
+  rt :dir fd :len lt :dir
+end
+copydef "suuntaan "movedir
+
+to visit :len
+  fd :len bk :len
+end
+copydef "käväise "visit
 
 to stride :len
   rt 90 jump :len lt 90
 end
-bury "stride
+copydef "liuu "stride
+
+to vaakaan :pit
+  setx xcor + :pit
+end
+
+to pystyyn :pit
+  sety ycor + :pit
+end
+
+bury [jump hyps jumpto hypsxy jumppos hypspaik movedir suuntaan visit käväise
+      stride liuu vaakaan pystyyn]
+
+;; remembered places
+
+make ".places []
+buryname ".places
+
+to remember
+  push ".places pos
+end
+copydef "muista "remember
+
+to return
+  jumppos pop ".places
+end
+copydef "palaa "return
+
+to virtually :.movement
+  remember
+  run :.movement
+  return
+end
+copydef "leikisti "virtually
+
+bury [remember muista return palaa virtually leikisti]
+
+;; calculations
+
+to where :.movement
+  remember
+  pu run :.movement
+  localmake ".result pos
+  return
+  op :.result
+end
+copydef "missä "where
+
+to distance2 :pos1 :pos2
+  localmake "xd (first :pos1) - (first :pos2)
+  localmake "yd (last :pos1) - (last :pos2)
+  op :xd * :xd + :yd * :yd
+end
+copydef "etäisyys2 "distance2
+
+to distance :pos1 :pos2
+  op sqrt distance2 :pos1 :pos2
+end
+copydef "etäisyys "distance
+
+bury [where missä distance2 etäisyys2 distance etäisyys]
 
