@@ -46,6 +46,10 @@ to move.protected :.move
   checkcollisions
 end
 
+to liiku :pit
+  move.protected [et :pit]
+end
+
 to redefine.command :cmd :defn
   make "redefp "true
   localmake "origcmd word :cmd ".original
@@ -65,6 +69,32 @@ to moveprotect2.command :cmd
      [`[[arg1 arg2] [move.protected [apply ,[word "" ?] (list :arg1 :arg2)]]]]
 end
 
-foreach [fd forward et eteen bk back ta taakse setpos paikkaan setx sety] ~
-   "moveprotect.command
-foreach [setxy meexy] "moveprotect2.command
+;foreach [fd forward et eteen bk back ta taakse setpos paikkaan setx sety] ~
+;   "moveprotect.command
+;foreach [setxy meexy] "moveprotect2.command
+
+;; tile types
+
+to sq :size
+  repeat 4 [fd :size rt 90]
+end
+
+to tile :size
+  fd :size / 2
+  rt 90
+  fd :size
+  lt 90
+  fd :size / 2
+  lt 90
+  fd :size * 2 / 3
+  lt 90
+  fd :size / 2
+  lt 90
+  fd :size / 3
+  rt 90
+  fd :size / 2
+  rt 90
+  fd :size * 2 / 3
+  rt 90
+end
+
