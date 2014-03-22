@@ -75,7 +75,7 @@ end
 to grid.draw :grid
   local [xdim ydim xscale yscale xoff yoff]
   grid.memvars :grid
-  localmake "oldpos pos
+  remember
   ht
   repeat :ydim [
    localmake "y repcount - 1
@@ -85,7 +85,7 @@ to grid.draw :grid
     localmake "block (mditem (list :x :y) last :grid)
     if not emptyp :block [run :block]
   ]]
-  pu setpos :oldpos pd
+  return
 end
 
 ;; collisions

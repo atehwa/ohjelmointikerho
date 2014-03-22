@@ -88,3 +88,19 @@ copydef "etäisyys "distance
 
 bury [where missä distance2 etäisyys2 distance etäisyys]
 
+;; file handling
+
+to readlists
+  if eofp [op []]
+  op fput readlist readlists
+end
+
+to filecontents :filename
+  openread :filename
+  setread :filename
+  localmake "result readlists
+  close :filename
+  op :result
+end
+
+bury [readlists filecontents]
