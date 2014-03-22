@@ -46,7 +46,7 @@ to makecollisions :grid :src :dst
   localmake "firsthit grid.firsthit :grid :src :dst
   if emptyp :firsthit [stop]
   foreach last :firsthit [if not emptyp first ? 
-    [apply word first ? ".collide fput first :firsthit bf ?]]
+    [apply word first first ? ".collide fput first :firsthit bf ?]]
 end
 
 to move.protected :.move
@@ -55,14 +55,33 @@ to move.protected :.move
   checkcollisions
 end
 
-to etene :pit
-  move.protected [et :pit]
+to mene :pit
+  move.protected [fd :pit]
+end
+
+to kaiku :pit
+  op grid.atpos :world where [fd :pit]
+end
+
+to luotaa :pit
+  sano kaiku :pit
 end
 
 ;; tile types
 
+to putuum :pos :msg
+  pr :msg
+  jumppos :pos
+  ht
+  repeat 50 [fd repcount rt 173]
+end
+
 to sq :size
   repeat 4 [fd :size rt 90]
+end
+
+to sq.collide :pos :x :y
+  putuum :pos [Osuit seinään]
 end
 
 to tile :size
@@ -75,12 +94,21 @@ to tile :size
   vaakaan 0 - :size
 end
 
+to tile.collide :pos :x :y
+  putuum :pos [Osuit tiileen]
+end
+
 to goal :size
   sq :size
   if :size < 10 [stop]
   fd :size / 2
   rt 45
   goal :size / 1.41421356
+end
+
+to goal.collide :pos :x :y
+  sano [Jee, voitit!]
+  repeat 12 [rt 30 repeat 36 [fd 4 rt 10]]
 end
 
 to tree :size
@@ -90,7 +118,15 @@ to tree :size
   repeat 2 [lt 30 sq :size / 3]
 end
 
+to tree.collide :pos :x :y
+  putuum :pos [Osuit puuhun]
+end
+
 ;; initialisation
+
+to uudestaan
+  cs grid.draw :world st
+end
 
 world.initialise "ralli/esim.wld
 
