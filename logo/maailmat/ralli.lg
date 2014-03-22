@@ -40,32 +40,9 @@ to move.protected :.move
   checkcollisions
 end
 
-to liiku :pit
+to etene :pit
   move.protected [et :pit]
 end
-
-to redefine.command :cmd :defn
-  make "redefp "true
-  localmake "origcmd word :cmd ".original
-  copydef :origcmd :cmd
-  define :cmd invoke :defn :origcmd
-  bury :cmd
-  make "redefp "false
-end
-
-to moveprotect.command :cmd
-  redefine.command :cmd ~
-     [`[[arg1] [move.protected [apply ,[word "" ?] (list :arg1)]]]]
-end
-
-to moveprotect2.command :cmd
-  redefine.command :cmd ~
-     [`[[arg1 arg2] [move.protected [apply ,[word "" ?] (list :arg1 :arg2)]]]]
-end
-
-;foreach [fd forward et eteen bk back ta taakse setpos paikkaan setx sety] ~
-;   "moveprotect.command
-;foreach [setxy meexy] "moveprotect2.command
 
 ;; tile types
 
@@ -74,21 +51,12 @@ to sq :size
 end
 
 to tile :size
-  fd :size / 2
-  rt 90
-  fd :size
-  lt 90
-  fd :size / 2
-  lt 90
-  fd :size * 2 / 3
-  lt 90
-  fd :size / 2
-  lt 90
-  fd :size / 3
-  rt 90
-  fd :size / 2
-  rt 90
-  fd :size * 2 / 3
-  rt 90
+  pystyyn :size / 2
+  vaakaan :size / 2
+  pystyyn :size / 2
+  pystyyn :size / -2
+  vaakaan :size / 2
+  pystyyn :size / -2
+  vaakaan 0 - :size
 end
 
