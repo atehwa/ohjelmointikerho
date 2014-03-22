@@ -60,3 +60,18 @@ to tile :size
   vaakaan 0 - :size
 end
 
+to goal :size
+  sq :size
+  if :size < 10 [stop]
+  fd :size / 2
+  rt 45
+  goal :size / 1.41421356
+end
+
+to tree :size
+  vaakaan :size
+  vaakaan :size / -2
+  pystyyn :size / 3
+  repeat 2 [lt 30 sq :size / 3]
+end
+
