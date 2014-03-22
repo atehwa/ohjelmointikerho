@@ -68,7 +68,7 @@ vain ohjelmamäärittelyn sisällä voi käyttää komentoja ANNA ja SEIS.
 varoitus: en pysty vapauttamaan muistia, koska siihen ei ole tarpeksi muistia.
 roskankeruu kytketty päältä - talleta työsi äkkiä!
 %s määritelty\n
-Aseta %s %s
+Olkoon %s %s
 miten %p\n\nvalmis\n\n
 Plist %s = %s\n
 Ei löydy apua.\n
