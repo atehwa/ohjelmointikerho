@@ -2,7 +2,22 @@ maailma "grid
 
 ;; the world
 
-;world.initialise "ralli/esim.wld
+to world.fixscale :scale :row
+  op map [ifelse ? = "_ [[]] [list ? :scale]] :row
+end
+
+to world.initialise :filename
+  localmake "worlddata filecontents :filename
+  localmake "params first :worlddata
+  localmake "scale first :params
+  localmake "dims bf :params
+  localmake "map bf :worlddata
+  make "world (newgrid first :dims last :dims :scale :scale
+     (first :dims) * :scale / -2 (last :dims) * :scale / -2)
+  grid.blit :world 0 0 map [world.fixscale :scale ?] :map
+  grid.draw :world
+  showturtle
+end
 
 ;; finding hit tiles from a world
 
@@ -74,4 +89,8 @@ to tree :size
   pystyyn :size / 3
   repeat 2 [lt 30 sq :size / 3]
 end
+
+;; initialisation
+
+world.initialise "ralli/esim.wld
 

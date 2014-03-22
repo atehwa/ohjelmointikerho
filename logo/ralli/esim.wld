@@ -1,11 +1,11 @@
 16 12 10
 sq sq sq sq sq sq sq sq
-sq tree [] [] [] [] [] [] [] [] tree sq
+sq tree _ _ _ _ _ _ _ _ tree sq
 sq
 sq
-sq [] [] [] [] [] [] goal
+sq _ _ _ _ _ _ goal
 sq sq sq sq
 sq tile tile sq
 sq tile tile sq
 sq tile tile sq
-sq tree [] [] [] [] [] [] [] [] tree sq
+sq tree tree tree _ _ _ _ _ _ tree sq

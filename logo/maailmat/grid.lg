@@ -81,9 +81,8 @@ to grid.draw :grid
    localmake "y repcount - 1
    repeat :xdim [
     localmake "x repcount - 1
-    pu setxy :x * :xscale + :xoff :y * :yscale + :yoff pd
-    localmake "block (mditem (list :x :y) last :grid)
-    if not emptyp :block [run :block]
+    seth 0 jumpto :x * :xscale + :xoff :y * :yscale + :yoff
+    run (mditem (list :x :y) last :grid)
   ]]
   return
 end
