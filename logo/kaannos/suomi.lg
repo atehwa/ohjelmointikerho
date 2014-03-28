@@ -46,8 +46,13 @@ copydef "paksuus "setpensize
 copydef "sano "print
 copydef "sanoalku "type
 copydef "tulosta "show
-copydef "kysy "readlist
-copydef "kysysana "readword
+copydef "lue "readlist
+copydef "luesana "readword
+to kysy :kysymys
+  sanoalku se :kysymys "
+  op readlist
+end
+bury "kysy
 
 ;; merkkipohjaiset
 
@@ -114,6 +119,14 @@ end
 bury "luettele
 copydef "satunnainen "random
 copydef "sat "random
+to mahdollisesti :pros
+  op (random 100) <= :pros
+end
+bury "mahdollisesti
+to ehkä
+  op mahdollisesti 50
+end
+bury "ehkä
 
 ;; loogiset operaatiot
 
