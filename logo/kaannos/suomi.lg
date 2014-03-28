@@ -120,7 +120,7 @@ bury "luettele
 copydef "satunnainen "random
 copydef "sat "random
 to mahdollisesti :pros
-  op (random 100) <= :pros
+  op (random 100) < :pros
 end
 bury "mahdollisesti
 to ehkä
