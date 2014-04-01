@@ -1,0 +1,17 @@
+
+make ".pressedkeys []
+buryname ".pressedkeys
+
+to update.pressedkeys
+  make ".pressedkeys []
+  while [keyp] [push ".pressedkeys readchar]
+end
+copydef "päivitä.painetut "update.pressedkeys
+
+to pressedp :key
+  op memberp :key :.pressedkeys
+end
+copydef "pressed? "pressedp
+copydef "painetaanko "pressedp
+
+bury [pressedp pressed? painetaanko update.pressedkeys päivitä.painetut]
