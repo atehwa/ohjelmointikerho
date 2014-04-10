@@ -15,7 +15,6 @@ to world.initialise :filename
   make "world (newgrid first :dims last :dims :scale :scale
      (first :dims) * :scale / -2 (last :dims) * :scale / -2)
   grid.blit :world 0 0 map [world.fixscale :scale ?] :map
-  grid.draw :world
   showturtle
 end
 
@@ -126,7 +125,13 @@ end
 
 to uudestaan
   cs grid.draw :world st
+  fence
 end
 
-world.initialise "ralli/esim.wld
+to taso :maa
+  world.initialise (word "ralli/ :maa ".wld)
+  uudestaan
+end
+
+taso "esim
 

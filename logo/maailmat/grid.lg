@@ -76,7 +76,7 @@ to grid.draw :grid
   local [xdim ydim xscale yscale xoff yoff]
   grid.memvars :grid
   remember
-  ht
+  window ht
   repeat :ydim [
    localmake "y repcount - 1
    repeat :xdim [
