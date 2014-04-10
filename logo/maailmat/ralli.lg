@@ -105,6 +105,10 @@ to goal :size
   goal :size / 1.41421356
 end
 
+to maaliko :juttu
+  anna sekä [eiettä tyhjäkö :juttu] [samatko eka :juttu "goal]
+end
+
 to goal.collide :pos :x :y
   sano [Jee, voitit!]
   repeat 12 [rt 30 repeat 36 [fd 4 rt 10]]
