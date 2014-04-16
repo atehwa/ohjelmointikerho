@@ -1,4 +1,4 @@
-!!! Oppitunti 0.  Moi!
+!!! Harjoitus 0.  Moi!
 
 Tällä oppitunnilla tutustumme Logo-ohjelmointiympäristöön.  Logo on
 kieli, jolla tietokoneelle annetaan ohjeita.  Logo on monipuolinen, ja
@@ -31,4 +31,33 @@ komennoilla:
 cd ohjelmointikerho/logo/
 ./logo
 }}}
+
+Logon pitäisi tervehtiä sinua jollain tämän näköisellä:
+
+{{{
+Tervetuloa Berkeley Logon versioon 5.5
+? 
+}}}
+
+Versio voi hyvin olla toinen, riippuen siitä, mikä ucblogo koneeseen on
+asennettu.  Jos teksti on englanninkielinen, et todennäköisesti ole
+käynnistänyt Logoa oikeassa hakemistossa (käännösten kannalta tärkeä
+tiedosto on ohjelmointikerho/logo/ -hakemistossa oleva Messages).  
+
+Rivin alussa oleva kysymysmerkki on ''kehote'' eli merkki siitä, että
+Logo on valmis ottamaan sinulta vastaan ohjeita.  Anna esimerkiksi
+seuraava komento (älä kirjoita kysymysmerkkiä, koska se on jo valmiiksi
+rivillä):
+
+{{{
+? sano 301
+}}}
+
+Logon pitäisi totella sinua ja sanoa 301 (numero 301 on lEEt-kieltä ja
+tarkoittaa "moi").  Onneksi olkoon, olet onnistunut komentamaan
+tietokonetta (tosin, eihän se ole kovin vaikeaa).
+
+Seuraavissa harjoituksissa yleensä oletetaan, että osaat käynnistää
+Logon tai se on sinulla jo valmiiksi käynnissä.  Voit nyt edetä
+seuraavaan harjoitukseen.
 
