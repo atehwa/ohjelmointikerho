@@ -1,0 +1,34 @@
+!!! Oppitunti 0.  Moi!
+
+Tällä oppitunnilla tutustumme Logo-ohjelmointiympäristöön.  Logo on
+kieli, jolla tietokoneelle annetaan ohjeita.  Logo on monipuolinen, ja
+sillä pystyy tekemään oikeastaan kaiken, mitä keskikokoiseen peliin tai
+hyötyohjelmaan tarvitaan.  Siinä on myös paljon ominaisuuksia, joilla
+ohjelmoinnin oppimista on helpotettu.  Älä hämäänny luulemaan, että
+koska Logossa on leikkiin ja oppimiseen tarkoitettuja komentoja, se ei
+olisi varteenotettava kieli "vakavaan" ohjelmointiin.
+
+Opas olettaa, että sinulla on käytössäsi Linux-ympäristö, jossa on
+valmiiksi asennettuna ohjelmat nimeltä ucblogo, git ja rlwrap.  Jos näin
+ei ole, voit yrittää asentaa ne itse tai pyytää apua joltakulta.
+Lisäksi sinun pitää osata avata ''Pääte-emulaattori'' eli ohjelma, jossa
+voi kirjoittaa tekstikomentoja.
+
+Anna päätteessä seuraava komento:
+
+{{{
+git clone http://github.com/atehwa/ohjelmointikerho
+}}}
+
+Tämä hakee hakemiston "ohjelmointikerho", jossa on Logon käyttöä
+helpottavia tiedostoja, muun muassa Logo-kielen käännös suomeksi.
+
+Vaihda hakemistoon, jossa Logo-harjoitukset ovat, ja käynnistä Logo
+hakemistossa olevalla käynnistimellä.  Tämä tapahtuu seuraavilla
+komennoilla:
+
+{{{
+cd ohjelmointikerho/logo/
+./logo
+}}}
+
