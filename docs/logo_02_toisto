@@ -1,0 +1,146 @@
+!!! Harjoitus 2: Tietokoneiden leipälaji
+
+Ihmiset osaavat useita asioita tietokoneita paremmin: tehdä ruokaa,
+harjata hampaita, kuunnella ystävää ja nähdä mielenkiintoisia unia,
+vain muutaman mainitakseni.  Mutta on yksi asia, jossa tietokoneet ovat
+paljon parempia kuin ihmiset.  Ja oikeastaan kaikki tietokoneiden
+hyödyllisyys seuraa tästä yhdestä taidosta.  Se on taito toistaa,
+ihan kuinka monta kertaa vain, ohjeita täsmälleen samanlaisina.  Ihmistä
+alkaa nopeasti kyllästyttää, kun pitää tehdä samaa asiaa uudestaan ja
+uudestaan, mutta tietokone ei edes huomaa toistavansa samaa.
+
+Edellisessä harjoituksessa tehdyt kuvat saattaisivat olla helpompia
+piirtää piirustusohjelmalla, vaikkakin käsin on vaikea saada niin
+tarkkoja mittoja kuin komennoilla, joihin pitää kirjoittaa täsmälleen,
+kuinka pitkä mikin viiva on.  Sen sijaan tässä harjoituksessa tehtäviä
+kuvia ei ole mitään toivoa piirtää käsin, sillä niiden piirtäminen
+vaatii suhteettoman paljon toistoa, tuota tietokoneiden mahtavaa taitoa.
+
+Mutta ensin tehdään neliö, jotta voin opettaa sinulle uuden komennon.
+Saatat jo tietää, että "oi 90" kääntää oikealle neliön kulman verran.
+Neliön saa aikaiseksi menemällä neljä kertaa eteenpäin ja kääntymällä
+joka välissä "oi 90".  Siis esimerkiksi näin (huomaa, että nämä komennot
+on hyvin helppoa kirjoittaa palauttamalla aina edellinen komento
+ylöspäin-nuolinäppäimellä):
+
+{{{
+? et 100 oi 90
+? et 100 oi 90
+? et 100 oi 90
+? et 100 oi 90
+}}}
+
+Haluan esitellä nyt uuden komennon, joka on "toista".  Sille annetaan
+numero, kuinka monta kertaa toistetaan, ja hakasulkeissa komennot, joita
+toistetaan.  Se ottaa siis kaksi syötettä: yhden luvun, yhden läjän
+komentoja hakasulkeissa.  Esimerkiksi seuraava toista-komento tekee
+samatlaisen neliön kuin yllä olevatkin komennot:
+
+{{{
+? toista 4 [et 100 oi 90]
+}}}
+
+Sitten tehdään asioita, joita on toivotonta tehdä ilman paljoa toistoa.
+Aloitetaan tekemällä jokin söherö, jossa käännytään ainakin kaksi kertaa
+vasemmalle.  Esimerkiksi näin:
+
+{{{
+? et 78 va 63 et 30 va 92
+}}}
+
+Useimmista tällaisista söheröistä tulee hienoja kuvioita, kun niitä
+toistaa tarpeeksi monta kertaa peräkkäin.  Esimerkiksi 30 toistoa on
+hyvä kokeiltava.  Palauta edellinen komento, mene rivin alkuun (Ctrl-A
+vie sinne nopeasti, lisää toistokäsky ja vielä loppuun sulkeva
+hakasulje.  Minulla tulos on tällainen:
+
+{{{
+? toista 30 [et 78 va 63 et 30 va 92]
+}}}
+
+Kun toteutan komennon, lopputulos näyttää vähän seitsensakaraiselta
+kranssilta.  Miltä sinun tuloksesi näyttää?  Kokeillaanpa vielä vähän
+lisää.  Lisää jokin kääntymiskomento tuon toista-komennon eteen,
+vaikkapa näin:
+
+{{{
+? va 90 toista 30 [et 78 va 63 et 30 va 92]
+}}}
+
+Kun teen tämän komennon pari kertaa (muista ylöspäin-nuoli!), siitä
+alkaa muodostua uusi, monimutkaisempi kuvio.  Tämä viittaa siihen, että
+komentoa toistamalla saisi jotain uutta, hauskaa aikaan:
+
+{{{
+? uusi
+? toista 6 [va 90 toista 30 [et 78 va 63 et 30 va 92]]
+}}}
+
+Miksi jäädä tähänkään?  Tehdäänpä sama temppu uusiksi:
+
+{{{
+? va 30 et 30 toista 6 [va 90 toista 30 [et 78 va 63 et 30 va 92]]
+? va 30 et 30 toista 6 [va 90 toista 30 [et 78 va 63 et 30 va 92]]
+? uusi
+? toista 12 [va 30 et 30 toista 6 [va 90 toista 30 [et 78 va 63 et 30 va 92]]]
+}}}
+
+Tällaisella tekniikalla voi tuottaa mielivaltaisen monimutkaisia
+säännöllisiä kuvioita.
+
+Toisto on tärkeää, kun tehdään pyöreitä kuvioita, kuten ympyröitä ja
+kaaria.  Pyöreyttä voi tehdä niin, että menee eteenpäin vähän
+kerrallaan, kääntyy välissä pikkuisen ja sitten etenee taas.  Ympyrään
+tarvitaan niin monta eteenpäinmenoa ja kääntymistä, ettei niitä jaksa
+kirjoittaa käsin edes hakkaamalla ylöspäin-nuolta ja enteriä.
+
+Lennokki päätyy alkuasentoon, kun sitä on käännetty samaan suuntaan
+(siis oikealle tai sitten vasemmalle) yhteensä 360 astetta.  Jos siis
+menemme esimerkiksi yhden askelen kerrallaan ja käännymme aina sen
+jälkeen yhden asteen, tarvitaan 360 toistoa kokonaisen ympyrän
+kulkemiseen:
+
+{{{
+? toista 360 [et 1 oi 1]
+}}}
+
+Jos haluamme kaaren, pitää toistokertoja tietenkin vähentää, jottei
+ympyrästä tulisi täysi:
+
+{{{
+? toista 90 [et 1 va 1]
+}}}
+
+Monikulmioita voi tehdä samanlaisella päättelyllä kuin ympyröitäkin.
+Esimerkiksi kahdeksankulmiossa on tietenkin kahdeksan käännöstä ja
+kahdeksan eteenpäin menemistä; lisäksi käännösten on oltava yhteensä
+360, jotta lennokki päätyisi samaan asentoon kuin lähtiessään.  Niinpä
+yksi käännös on 360 astetta jaettuna 8 kulmalle... Logo osaa toki
+kertoa, kuinka paljon se on:
+
+{{{
+? sano 360/8
+45
+}}}
+
+Näin ollen kahdeksankulmio saadaan aikaan kahdeksalla toistolla, joista
+jokaisessa mennään eteenpäin ja sen jälkeen käännytään 45 astetta.
+Kokeile vaikka itse:
+
+{{{
+? toista 8 [et 70 va 45]
+}}}
+
+Samaan tapaan voi tehdä tietenkin ihan mitä vain kulmioita.  Astekulmaa
+ei tarvitse välttämättä laskea etukäteen, sen voi jättää Logon
+laskettavaksi:
+
+{{{
+? toista 7 [et 70 va 360/7]
+}}}
+
+Nyt osaat tehdä hyvin monimutkaisia kuvioita, ympyröitä, kaaria ja
+monikulmioita.  Toteutapa nyt jokin piirros, jossa tarvitaan näitä.
+Seuraavaan harjoitukseen voit siirtyä, kun olet piirrokseesi
+tyytyväinen.
+
