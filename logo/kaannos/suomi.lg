@@ -98,7 +98,9 @@ end
 bury "lopeta
 copydef "odota "wait
 copydef "miten "to
-copydef "muutenvaan "ignore
+to muutenvaan :arvo
+end
+bury "muutenvaan
 
 ;; muuttujat
 
