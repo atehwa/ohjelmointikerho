@@ -10,10 +10,10 @@ copydef "oi "rt
 copydef "oikealle "rt
 copydef "va "lt
 copydef "vasemmalle "lt
-copydef "meexy "setxy
+copydef "menexy "setxy
 copydef "paikkaan "setpos
 copydef "asentoon "setheading
-copydef "origoon "home
+copydef "keskelle "home
 copydef "paikka "pos
 copydef "asento "heading
 to kohden :pos
