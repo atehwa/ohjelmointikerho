@@ -34,8 +34,12 @@ to pystyyn :pit
   sety ycor + :pit
 end
 
+to liikuxy :xd :yd
+  setxy xcor + :xd ycor + :yd
+end
+
 bury [jump hyps jumpto hypsxy jumppos hypspaik movedir suuntaan
-      stride liuu vaakaan pystyyn]
+      stride liuu vaakaan pystyyn liikuxy]
 
 ;; remembered places
 
