@@ -1,0 +1,12 @@
+miten karva
+toista 360 [et 10 oi kerta]
+valmis
+
+miten spi6
+toista 100 [et kerta oi 61]
+valmis
+
+to vyyhti
+toista 30 [et -10 toista kerta*3 [et 5 oi kerta*20/(kerta+10)]]
+valmis
+

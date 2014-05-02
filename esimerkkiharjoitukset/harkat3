@@ -1,0 +1,79 @@
+miten kaario
+toi 90 [et 1 oi 1]
+valmis
+
+miten kaariv
+toi 90 [et 1 va 1]
+valmis
+
+miten lehti
+kaariv va 90
+kaariv va 90
+valmis
+
+miten neliö
+toi 4 [et 100 oi 90]
+valmis
+
+miten nuoli
+et 100
+va 135
+et 50
+va 135
+et 71
+va 135
+et 50
+valmis
+
+miten orvokki
+toista 7 [lehti oi 56]
+valmis
+
+miten pää
+va 90
+ympyrä
+oi 60
+hyps 80
+oi 30
+silmät
+valmis
+
+miten raaja
+et 65
+sormet
+ta 65
+valmis
+
+miten seppele
+toista 12 [orvokki ta 50]
+valmis
+
+miten silmät
+oi 45
+toista 2 [et 15 oi 90 et 15 va 90]
+valmis
+
+miten sormet
+va 50
+toista 5 [et 30 ta 30 oi 20]
+va 50
+valmis
+
+miten ukkeli
+vartalo
+pää
+valmis
+
+miten vartalo
+oi 120 raaja
+va 240 raaja
+oi 120 ta 80
+oi 160 raaja
+va 320 raaja
+oi 160 et 80
+valmis
+
+miten ympyrä
+toi 360 [et 1 oi 1]
+valmis
+
