@@ -1,0 +1,94 @@
+miten alusta
+uusi
+piiloon
+olkoon "mato []
+olkoon "pidennys 3
+asetaompsu
+valmis
+
+miten asetaompsu
+  olkoon "ompsunpaikka lista jokuluku jokuluku
+  jos osuuko :ompsunpaikka :mato [asetaompsu seis]
+  muista
+  hypspaik :ompsunpaikka
+  ompsu
+  palaa
+valmis
+
+miten etene
+hyps 21
+pompula
+queue "mato paikka
+riippuen :pidennys > 0 [olkoon "pidennys :pidennys - 1] [pompulapois pop "mato]
+valmis
+
+miten jokuluku
+  anna (sat 200) - 100
+valmis
+
+miten ohjaa
+  jos painettuko [toteutaohjaus näppäin]
+valmis
+
+miten ompsu
+va 90
+väri punainen
+toista 36 [et 1 va 10]
+oi 90
+väri vaalea vihreä
+toista 8 [et 1 oi 10]
+väri valkoinen
+valmis
+
+miten osu
+  jos osuuko vika :mato alut :mato [throw "argh]
+  jos (etäisyys vika :mato :ompsunpaikka) < 17 [
+    olkoon "pidennys :pidennys + 5
+    asetaompsu
+  ]
+valmis
+
+miten osuuko :paikka :paikat
+  jos tyhjäkö :paikat [anna ei]
+  jos (etäisyys :paikka eka :paikat) < 19 [anna joo]
+  anna osuuko :paikka loput :paikat
+valmis
+
+miten pelaa
+  alusta
+  peli
+valmis
+
+miten peli
+  ohjaa
+  etene
+  osu
+  odota 15
+  peli
+valmis
+
+miten pompula
+hyps 10
+oi 90
+toista 36 [et 1.745 oi 10]
+va 90
+hyps -10
+valmis
+
+miten pompulapois :paikka
+muista
+hypspaik :paikka
+pe paksuus 5 pompula
+palaa
+ppt paksuus 1
+valmis
+
+miten toteutaohjaus :näppäin
+  jos :näppäin = "a [va 30]
+  jos :näppäin = "d [oi 30]
+  jos :näppäin = "q [throw "loppu]
+valmis
+
+Olkoon "mato []
+Olkoon "ompsunpaikka [85 -75]
+Olkoon "pidennys 3
