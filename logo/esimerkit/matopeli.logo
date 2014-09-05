@@ -1,9 +1,9 @@
 miten alusta
-uusi
-piiloon
-olkoon "mato []
-olkoon "pidennys 3
-asetaompsu
+  uusi
+  piiloon
+  olkoon "mato []
+  olkoon "pidennys 3
+  asetaompsu
 valmis
 
 miten asetaompsu
@@ -16,10 +16,10 @@ miten asetaompsu
 valmis
 
 miten etene
-hyps 21
-pompula
-queue "mato paikka
-riippuen :pidennys > 0 [olkoon "pidennys :pidennys - 1] [pompulapois pop "mato]
+  hyps 21
+  pompula
+  queue "mato paikka
+  riippuen :pidennys > 0 [olkoon "pidennys :pidennys - 1] [pompulapois pop "mato]
 valmis
 
 miten jokuluku
@@ -31,13 +31,13 @@ miten ohjaa
 valmis
 
 miten ompsu
-va 90
-väri punainen
-toista 36 [et 1 va 10]
-oi 90
-väri vaalea vihreä
-toista 8 [et 1 oi 10]
-väri valkoinen
+  va 90
+  väri punainen
+  toista 36 [et 1 va 10]
+  oi 90
+  väri vaalea vihreä
+  toista 8 [et 1 oi 10]
+  väri valkoinen
 valmis
 
 miten osu
@@ -68,19 +68,19 @@ miten peli
 valmis
 
 miten pompula
-hyps 10
-oi 90
-toista 36 [et 1.745 oi 10]
-va 90
-hyps -10
+  hyps 10
+  oi 90
+  toista 36 [et 1.745 oi 10]
+  va 90
+  hyps -10
 valmis
 
 miten pompulapois :paikka
-muista
-hypspaik :paikka
-pe paksuus 5 pompula
-palaa
-ppt paksuus 1
+  muista
+  hypspaik :paikka
+  pe paksuus 5 pompula
+  palaa
+  ppt paksuus 1
 valmis
 
 miten toteutaohjaus :näppäin
