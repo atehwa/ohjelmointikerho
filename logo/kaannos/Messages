@@ -45,6 +45,7 @@ tarkoitit varmaankin '%p' etkä %p
 en saa auki tiedostoa %p
 olen jo avannut tiedoston %p
 tiedosto %p ei ole auki
+kun käytät RUNLIST:a, listassa %s ei saisi olla kuin yksi lauseke
 ; Variable name %s is defined both dynamically and in current object
 ; Non-error messages (no numeric error code for these)
 Kiitos, kun käytit Logoa!
