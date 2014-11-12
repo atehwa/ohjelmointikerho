@@ -1,40 +1,40 @@
 to vihreä
- op [9728 34048 0]
+ op [14 51 0]
 end
 bury "vihreä
 
 to punainen
- op [55552 15872 6656]
+ op [84 24 10]
 end
 bury "punainen
 
 to sininen
- op [24576 25600 65535]
+ op [37 39 100]
 end
 bury "sininen
 
 to keltainen
- op [65535 64000 9984]
+ op [100 97 15]
 end
 bury "keltainen
 
 to lime
- op [38912 65535 19456]
+ op [59 100 29]
 end
 bury "lime
 
 to pinkki
- op [65300 43520 65535]
+ op [99 66 100]
 end
 bury "pinkki
 
 to ruskea
- op [20480 13568 0]
+ op [31 20 0]
 end
 bury "ruskea
 
 to valkoinen
- op [65535 65535 65535]
+ op [100 100 100]
 end
 bury "valkoinen
 
@@ -44,7 +44,7 @@ end
 bury "musta
 
 to harmaa
- op [32768 32768 32768]
+ op [50 50 50]
 end
 bury "harmaa
 
