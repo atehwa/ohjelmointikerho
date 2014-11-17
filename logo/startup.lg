@@ -1,9 +1,18 @@
+load "maailmat/autosave.lg
 load "kaannos/suomi.lg
 load "kaannos/varit.lg
 load "maailmat/avut.lg
 make "UseAlternateNames "true
+
 to maailma :nimi
   if listp :nimi [foreach :nimi "maailma stop]
   load (word "maailmat/ :nimi ".lg)
 end
 bury "maailma
+
+if filep "autosave [
+  print [Sinulla on automaattisesti tallennettuja muutoksia viime kerralta.]
+  print [Ladataanko ne takaisin? (K/E)]
+  if readchar = "k [load "autosave]
+]
+

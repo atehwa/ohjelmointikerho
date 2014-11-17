@@ -1,0 +1,23 @@
+
+copydef "ur.edit "edit
+copydef "ur.save "save
+
+make "redefp "true
+erase [edit save]
+
+to edit :what
+  ur.edit :what
+  ur.save "autosave
+end
+
+to save :whatcham
+  bury "whatcham
+  ur.save :whatcham
+  erasefile "autosave
+  unbury "whatcham
+end
+
+bury [edit save]
+make "redefp "false
+buryname [redefp]
+
