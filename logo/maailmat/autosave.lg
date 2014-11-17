@@ -5,16 +5,18 @@ copydef "ur.save "save
 make "redefp "true
 erase [edit save]
 
-to edit :what
-  ur.edit :what
+to edit [:what] 1
+  apply "ur.edit :what
+  buryname "what
   ur.save "autosave
+  unburyname "what
 end
 
-to save :whatcham
-  bury "whatcham
-  ur.save :whatcham
+to save [:what] 1
+  buryname "what
+  apply "ur.save :what
+  unburyname "what
   erasefile "autosave
-  unbury "whatcham
 end
 
 bury [edit save]

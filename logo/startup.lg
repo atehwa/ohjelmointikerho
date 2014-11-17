@@ -13,6 +13,6 @@ bury "maailma
 if filep "autosave [
   print [Sinulla on automaattisesti tallennettuja muutoksia viime kerralta.]
   print [Ladataanko ne takaisin? (K/E)]
-  if readchar = "k [load "autosave]
+  if readchar = "k [load "autosave print [Ladattu.]]
 ]
 
