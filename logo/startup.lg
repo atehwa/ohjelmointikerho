@@ -3,6 +3,7 @@ load "kaannos/suomi.lg
 load "kaannos/varit.lg
 load "maailmat/avut.lg
 make "UseAlternateNames "true
+norefresh
 
 to maailma :nimi
   if listp :nimi [foreach :nimi "maailma stop]

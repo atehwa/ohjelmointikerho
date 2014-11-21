@@ -1,3 +1,4 @@
 #!/bin/sh
 test -z "$EDITOR" && export EDITOR=/usr/bin/gedit
 rlwrap logo
+#if which logo-wx; then logo-wx; else rlwrap logo; fi
