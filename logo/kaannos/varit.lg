@@ -49,7 +49,7 @@ end
 bury "harmaa
 
 to vaalea :vari
- op map [round (? + 65535) / 2] :vari
+ op map [round (? + 100) / 2] :vari
 end
 bury "vaalea
 
@@ -66,12 +66,12 @@ end
 bury "clip
 
 to valosekoitus :vari1 :vari2
- op (map [clip (?1 + ?2) 0 65535] :vari1 :vari2)
+ op (map [clip (?1 + ?2) 0 100] :vari1 :vari2)
 end
 bury "valosekoitus
 
 to varjosekoitus :vari1 :vari2
- op (map [round (?1 * ?2 / 65536)] :vari1 :vari2)
+ op (map [round (?1 * ?2 / 100)] :vari1 :vari2)
 end
 bury "varjosekoitus
 
