@@ -198,6 +198,7 @@ copydef "äläaskella "unstep
 copydef "muokkaa "edit
 copydef "muo "edit
 copydef "tallenna "save
+bury [muokkaa muo tallenna]
 copydef "lataa "load
 copydef "moiks "bye
 
