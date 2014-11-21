@@ -73,6 +73,7 @@ to putuum :pos :msg
   jumppos :pos
   ht
   repeat 50 [fd repcount rt 173]
+  throw "toplevel
 end
 
 to sq :size
