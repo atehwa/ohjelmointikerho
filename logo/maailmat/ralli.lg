@@ -134,7 +134,7 @@ to uudestaan
 end
 
 to taso :maa
-  world.initialise (word "ralli/ :maa ".wld)
+  world.initialise (word "maailmat/ralli/ :maa ".wld)
   uudestaan
 end
 
