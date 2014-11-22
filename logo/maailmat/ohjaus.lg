@@ -2,11 +2,11 @@
 make ".pressedkeys []
 buryname ".pressedkeys
 
-to update.pressedkeys
+to readkeys
   make ".pressedkeys []
   while [keyp] [push ".pressedkeys readchar]
 end
-copydef "päivitä.painetut "update.pressedkeys
+copydef "luenäppis "readkeys
 
 to pressedp :key
   op memberp :key :.pressedkeys
@@ -14,4 +14,4 @@ end
 copydef "pressed? "pressedp
 copydef "painetaanko "pressedp
 
-bury [pressedp pressed? painetaanko update.pressedkeys päivitä.painetut]
+bury [pressedp pressed? painetaanko readkeys luenäppis]
