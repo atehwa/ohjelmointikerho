@@ -6,6 +6,7 @@ to newgrid :xdim :ydim [:xscale 16] [:yscale 16] [:xoff 0] [:yoff 0]
   op `[[[,:xdim ,:ydim] [,:xscale ,:yscale] [,:xoff ,:yoff]]
        ,[(mdarray (list :xdim :ydim) 0)]]
 end
+bury "newgrid
 
 to grid.memvars :grid
   localmake "memvars first :grid
@@ -19,11 +20,13 @@ to grid.memvars :grid
   make "xoff first :offsets
   make "yoff last :offsets
 end
+bury "grid.memvars
 
 to coord.unpack :coord
   make "x first :coord
   make "y last :coord
 end
+bury "coord.unpack
 
 to grid.cell :grid :coord
   local [xdim ydim xscale yscale xoff yoff x y]
@@ -31,6 +34,7 @@ to grid.cell :grid :coord
   coord.unpack :coord
   op list int (:x - :xoff) / :xscale int (:y - :yoff) / :yscale
 end
+bury "grid.cell
 
 to grid.pos :grid :coord
   local [xdim ydim xscale yscale xoff yoff x y]
@@ -38,6 +42,7 @@ to grid.pos :grid :coord
   coord.unpack :coord
   op list :x * :xscale + :xoff :y * :yscale + :yoff
 end
+bury "grid.pos
 
 to grid.at :grid :coord
   local [x y xdim ydim]
@@ -47,10 +52,12 @@ to grid.at :grid :coord
   if (or :x < 0 :y < 0 :x >= :xdim :y >= :ydim) [op []]
   op mditem :coord last :grid
 end
+bury "grid.at
 
 to grid.atpos :grid :coord
   op grid.at :grid grid.cell :grid :coord
 end
+bury "grid.atpos
 
 to grid.set :grid :coord :block
   local [x y xdim ydim]
@@ -60,6 +67,7 @@ to grid.set :grid :coord :block
   if (or :x < 0 :y < 0 :x >= :xdim :y >= :ydim) [stop]
   mdsetitem :coord last :grid :block
 end
+bury "grid.set
 
 to grid.blit :grid :x :y :stuff
   if emptyp :stuff [stop]
@@ -69,6 +77,7 @@ to grid.blit :grid :x :y :stuff
   ]
   grid.blit :grid :x :y + 1 bf :stuff
 end
+bury "grid.blit
 
 ;; drawing
 
@@ -86,17 +95,20 @@ to grid.draw :grid
   ]]
   return
 end
+bury "grid.draw
 
 ;; collisions
 
 to transpose :coord
   op list last :coord first :coord
 end
+bury "transpose
 
 to seqbetween :min :max :step
   if :min > :max [op []]
   op fput :min seqbetween :min + :step :max :step
 end
+bury "seqbetween
 
 to grid.xcollisions :off :scale :pos1 :pos2
   if (first :pos2) < (first :pos1) ~
@@ -110,11 +122,13 @@ to grid.xcollisions :off :scale :pos1 :pos2
   localmake "tilt :yd / :xd
   op map [list ? (? - (first :pos1)) * :tilt + (last :pos1)] :xs
 end
+bury "grid.xcollisions
 
 to grid.ycollisions :off :scale :pos1 :pos2
   localmake "res grid.xcollisions :off :scale transpose :pos1 transpose :pos2
   op map "transpose :res
 end
+bury "grid.ycollisions
 
 to grid.blocksat :grid :coord :dir
   local [x y]
@@ -124,6 +138,7 @@ to grid.blocksat :grid :coord :dir
      [list grid.cell :grid list :x :y - .01 grid.cell :grid list :x :y + .01]
   op map [fput grid.at :grid ? ?] :cs
 end
+bury "grid.blocksat
 
 to grid.collisions :grid :pos1 :pos2
   local [xdim ydim xscale yscale xoff yoff]
@@ -134,9 +149,11 @@ to grid.collisions :grid :pos1 :pos2
   localmake "colly map [list ? grid.blocksat :grid ? "y] :posy
   op se :collx :colly
 end
+bury "grid.collisions
 
 to grid.transitions :grid :pos1 :pos2
   op filter [not (first first last ?) = (first last last ?)] ~
      grid.collisions :grid :pos1 :pos2
 end
+bury "grid.transitions
 
