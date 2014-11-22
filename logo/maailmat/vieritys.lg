@@ -75,11 +75,20 @@ bury [setxy menexy home clearscreen cs uusi setx sety setpos paikkaan]
 ;; queries
 
 copydef "ur.pos "pos
-erase "pos
+copydef "ur.mousepos "mousepos
+erase [pos mousepos]
 
 to pos
   op list ((first ur.pos) + xscroll) ((last ur.pos) + yscroll)
 end
-bury "pos
+copydef "paikka "pos
+
+to mousepos
+  localmake "mp ur.mousepos
+  op list ((first :mp) + xscroll) ((last :mp) + yscroll)
+end mousepos
+copydef "hiiri "mousepos
+
+bury [pos paikka mousepos hiiri]
 
 ern "redefp
