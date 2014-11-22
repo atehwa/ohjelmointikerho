@@ -1,1 +1,85 @@
 ;;; redefine setxy etc. to allow for viewport movement
+
+window
+make "redefp "true
+
+;; scroll variables
+
+make ".xscroll 0
+make ".yscroll 0
+buryname [.xscroll .yscroll]
+
+to setscroll :xs :ys
+  make ".xscroll :xs
+  make ".yscroll :ys
+  clearscreen
+end
+copydef "vieritä "setscroll
+
+to xscroll
+  op :.xscroll
+end
+copydef "xvieritys "xscroll
+
+to yscroll
+  op :.yscroll
+end
+copydef "yvieritys "yscroll
+
+to scroll
+  op list xscroll yscroll
+end
+copydef "vieritys "scroll
+
+bury [setscroll vieritä xscroll xvieritys yscroll yvieritys scroll vieritys]
+
+;; mutators
+
+copydef "ur.setxy "setxy
+copydef "ur.setx "setx
+copydef "ur.sety "sety
+erase [setxy setx sety setpos home clearscreen cs]
+
+to setxy :x :y
+  ur.setxy (:x - xscroll) (:y - yscroll)
+end
+copydef "menexy "setxy
+
+to home
+  setxy 0 0
+  seth 0
+end
+
+to clearscreen
+  home
+  clean
+end
+copydef "cs "clearscreen
+copydef "uusi "clearscreen
+
+to setx :x
+  ur.setx (:x - xscroll)
+end
+
+to sety :y
+  ur.sety (:y - yscroll)
+end
+
+to setpos :pos
+  setxy first :pos last :pos
+end
+copydef "paikkaan "setpos
+
+bury [setxy menexy home clearscreen cs uusi setx sety setpos paikkaan]
+
+;; queries
+
+copydef "ur.pos "pos
+erase "pos
+
+to pos
+  op list ((first ur.pos) + xscroll) ((last ur.pos) + yscroll)
+end
+bury "pos
+
+ern "redefp
