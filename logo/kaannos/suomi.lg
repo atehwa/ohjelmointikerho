@@ -12,14 +12,12 @@ copydef "va "lt
 copydef "vasemmalle "lt
 copydef "menexy "setxy
 copydef "paikkaan "setpos
-copydef "asentoon "setheading
-copydef "keskelle "home
+copydef "suuntaan "setheading
 copydef "paikka "pos
-copydef "asento "heading
+copydef "suunta "heading
 to kohden :pos
   seth towards :pos
 end
-bury "kohden
 copydef "teksti "label
 
 ;; piirtoympäristö
@@ -52,7 +50,6 @@ to kysy :kysymys
   sanoalku se :kysymys "
   op readlist
 end
-bury "kysy
 
 ;; merkkipohjaiset
 
@@ -63,16 +60,22 @@ copydef "tyhjennä "cleartext
 ;; hiiri
 
 copydef "hiiri "mousepos
+;copydef "klikkaus "clickpos ; only in logo-wx
 copydef "klikattuko "buttonp
 copydef "nappi "button
 
 ;;; ohjausrakenteet
 
-;; toistot ja ehdot
+;; toistot
 
 copydef "toista "repeat
 copydef "toi "repeat
 copydef "kerta "repcount
+copydef "ikuisesti "forever
+copydef "kunnes "until
+
+;; ehdot
+
 copydef "jos "if
 copydef "riippuen "ifelse
 copydef "onko "test
@@ -81,11 +84,12 @@ copydef "josei "iffalse
 to joo
   op "joo
 end
-bury "joo
 to ei
   op "ei
 end
-bury "ei
+to vertaa :arvo :jutut
+  case :arvo :jutut
+end
 
 ;; suoritus
 
@@ -95,41 +99,36 @@ copydef "anna "output
 to lopeta
  throw "toplevel
 end
-bury "lopeta
 copydef "odota "wait
 copydef "miten "to
 to muutenvaan :arvo
 end
-bury "muutenvaan
 
 ;; muuttujat
 
 .macro nimeä :name :value
  op (list "local (word "" :name) "apply ""make (list :name :value))
 end
-bury "nimeä
 copydef "olkoon "make
 copydef "mitä "thing
+copydef "pinoon "push
+copydef "ota "pop
+copydef "jonoon "queue
 
 ;;; tiedon käsittelijät
 
 ;; luvut
 
 copydef "pyöristä "round
-to luettele :min :max
-  op iseq :min :max
-end
-bury "luettele
+copydef "luettele "iseq
 copydef "satunnainen "random
 copydef "sat "random
 to mahdollisesti :pros
   op (random 100) < :pros
 end
-bury "mahdollisesti
 to ehkä
   op mahdollisesti 50
 end
-bury "ehkä
 
 ;; loogiset operaatiot
 
@@ -145,24 +144,19 @@ copydef "yhdistä "se
 copydef "yhd "se
 copydef "alkuun "fput
 copydef "loppuun "lput
-to käännä :obj
-  op reverse :obj
-end
-bury "käännä
+copydef "käännä "reverse
 copydef "eka "first
 copydef "loput "bf
 copydef "vika "last
 copydef "alut "bl
 copydef "kohta "item
-to jokin :lista
-  op pick :lista
-end
-bury "jokin
+copydef "jokin "pick
 copydef "pituus "count
-to paitsi :juttu :lista
-  op remove :juttu :lista
+copydef "paitsi "remove
+copydef "listaksi "parse
+to tyhjä
+  op []
 end
-bury "paitsi
 
 ;; predikaatit
 
@@ -182,15 +176,8 @@ to tuhoa :nimi
   er :nimi
   ern :nimi
 end
-bury "tuhoa
-to muuttujat
-  pons
-end
-bury "muuttujat
-to ohjelmat
-  pots
-end
-bury "ohjelmat
+copydef "muuttujat "pons
+copydef "ohjelmat "pots
 copydef "seuraa "trace
 copydef "äläseuraa "untrace
 copydef "askella "step
@@ -198,7 +185,8 @@ copydef "äläaskella "unstep
 copydef "muokkaa "edit
 copydef "muo "edit
 copydef "tallenna "save
-bury [muokkaa muo tallenna]
 copydef "lataa "load
 copydef "moiks "bye
+
+buryall
 

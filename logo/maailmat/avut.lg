@@ -19,7 +19,7 @@ copydef "hypspaik "jumppos
 to movedir :dir :len
   rt :dir fd :len lt :dir
 end
-copydef "suuntaan "movedir
+copydef "liiku "movedir
 
 to stride :len
   pu movedir 90 :len pd
@@ -38,7 +38,7 @@ to liikuxy :xd :yd
   setxy xcor + :xd ycor + :yd
 end
 
-bury [jump hyps jumpto hypsxy jumppos hypspaik movedir suuntaan
+bury [jump hyps jumpto hypsxy jumppos hypspaik movedir liiku
       stride liuu vaakaan pystyyn liikuxy]
 
 ;; remembered places
