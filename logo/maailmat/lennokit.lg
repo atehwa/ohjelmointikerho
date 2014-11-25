@@ -1,0 +1,19 @@
+
+maailma "turtles
+
+copydef "tämälennokki "turtle
+copydef "täälen "turtle
+copydef "missälennokki "turtlepos
+copydef "mislen "turtlepos
+copydef "vaihda "setturtle
+copydef "kloonaa "copyturtle
+copydef "unohda "deleteturtle
+copydef "alustalennokit "resetturtles
+copydef "alulen "resetturtles
+copydef "levitälennokit "spread
+copydef "levlen "spread
+copydef "lennokit "allturtles
+copydef "kaikilla "alldo
+
+bury [tämälennokki täälen missälennokki mislen vaihda kloonaa unohda
+      alustalennokit alulen levitälennokit levlen lennokit kaikilla]
