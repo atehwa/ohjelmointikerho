@@ -1,7 +1,8 @@
 Make "sprites []
 
 to makesprite :prog
-  make "oldturtle copyturtle
+  make "oldturtle turtle
+  copyturtle
   make "sprites fput list turtle :prog :sprites
   setturtle :oldturtle
 end
