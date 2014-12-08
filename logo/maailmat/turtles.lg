@@ -8,30 +8,36 @@ buryname ".curturtle
 to saveturtlestate
   .setitem turtle :.turtles turtlestate
 end
+bury "saveturtlestate
 
 to markturtle
   .setitem turtle :.turtles "current
 end
+bury "markturtle
 
 to checkturtle :ttl
   if emptyp item :ttl :.turtles [(throw "error se [no such turtle] :ttl)]
 end
+bury "checkturtle
 
 ;; turtle queries
 
 to turtle
   op :.curturtle
 end
+bury "turtle
 
 to turtlepos :ttl
   checkturtle :ttl
   if :ttl = turtle [op pos]
   op first item :ttl :.turtles
 end
+bury "turtlepos
 
 to turtlestate
   op (list pos heading pen)
 end
+bury "turtlestate
 
 ;; changing turtles
 
@@ -43,6 +49,7 @@ to setturtle :ttl
   setturtlestate item :ttl :.turtles
   markturtle
 end
+bury "setturtle
 
 to setturtlestate :ttl
   pu
@@ -50,10 +57,16 @@ to setturtlestate :ttl
   setheading first bf :ttl
   setpen last :ttl
 end
+bury "setturtlestate
 
 ;; creating and deleting turtles
 
 to copyturtle
+  ignore cloneturtle
+end
+bury "copyturtle
+
+to cloneturtle
   localmake "oldturtle turtle
   saveturtlestate
   repeat 1000 [
@@ -63,29 +76,35 @@ to copyturtle
   ]
   (throw "error [too many turtles])
 end
+bury "cloneturtle
 
 to deleteturtle :ttl
   if :ttl = turtle [(throw "error [cannot delete current turtle])]
   .setitem :ttl :.turtles []
 end
+bury "deleteturtle
 
 to resetturtles
   make ".turtles array 1000
   make ".curturtle 1
   markturtle
 end
+bury "resetturtles
 
 ;; nice shorthands
 
 to spread :count
-  repeat :count [ignore copyturtle rt 360 / :count]
+  repeat :count [copyturtle rt 360 / :count]
 end
+bury "spread
 
 to allturtles
   op filter [not emptyp item ? :.turtles] iseq 1 1000
 end
+bury "allturtles
 
 to alldo :.prog
   foreach allturtles [setturtle ? run :.prog]
 end
+bury "alldo
 
