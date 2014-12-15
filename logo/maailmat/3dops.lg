@@ -21,12 +21,20 @@ to 3dmul :scale :p
   op map [? * :scale] :p
 end
 
+to 3dori
+  op :.3dorient
+end
+
 to 3dpoint :x :y :z
   op (list :x :y :z)
 end
 
+to 3dpos
+  op 3dmul -1 :.3ddisp
+end
+
 to 3drotate :p
-  op 3dadd 3dadd 3dmul 3dx :p 3dx :.3dorient 3dmul 3dy :p 3dy :.3dorient 3dmul 3dz :p 3dz :.3dorient
+  op 3dadd 3dadd 3dmul 3dx :p 3dx 3dori 3dmul 3dy :p 3dy 3dori 3dmul 3dz :p 3dz 3dori
 end
 
 to 3drotxz :theta :dir
@@ -59,15 +67,15 @@ to 3dshift :p
 end
 
 to 3dturnpitch :theta
-  make ".3dorient map [3drotyz :theta ?] :.3dorient
+  make ".3dorient map [3drotyz :theta ?] 3dori
 end
 
 to 3dturnyaw :theta
-  make ".3dorient map [3drotxz :theta ?] :.3dorient
+  make ".3dorient map [3drotxz :theta ?] 3dori
 end
 
 to 3dunrotate :p
-  op 3dpoint (dotprod :p 3dx :.3dorient) (dotprod :p 3dy :.3dorient) (dotprod :p 3dz :.3dorient)
+  op 3dpoint dotprod :p 3dx 3dori dotprod :p 3dy 3dori dotprod :p 3dz 3dori
 end
 
 to 3dx :p
