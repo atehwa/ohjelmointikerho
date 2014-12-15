@@ -9,7 +9,8 @@ valmis
 miten 3dlentosilmu :kivet :tie
   ohjaa
   cs
-  3dpiirrä firsts :kivet
+  3dpiirrä alkuun alus 3dpos firsts :kivet
+  odota 3
   törmää :kivet
   3dlentosilmu päivitäkivet :kivet :tie
 valmis
@@ -23,6 +24,10 @@ valmis
 
 miten alkukivet
   op map [satunnaiskivi ? * 300] luettele 2 20
+valmis
+
+miten alus :paikka
+  anna map [3dadd :paikka ?] [[-20 -20 -20] [20 -20 -20] [20 20 -20] [20 20 20] [-20 20 20] [-20 -20 20]]
 valmis
 
 miten kivi :keskus
@@ -56,4 +61,15 @@ miten satunnaiskivi :etäisyys
 valmis
 
 miten törmää :kivet
+  jos tyhjäkö :kivet [seis]
+  nimeä "kivenpaikka vika eka :kivet
+  nimeä "omapaikka 3dpos
+  nimeä "xd (3dx :kivenpaikka) - (3dx :omapaikka)
+  nimeä "yd (3dy :kivenpaikka) - (3dy :omapaikka)
+  nimeä "zd (3dz :kivenpaikka) - (3dz :omapaikka)
+  jos :xd * :xd + :yd * :yd + :zd * :zd < 10000 [
+    sano [haha, osuit]
+    lopeta
+  ]
+  törmää loput :kivet
 valmis
