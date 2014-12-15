@@ -63,9 +63,10 @@ end
 to 3dsetpos :p
   localmake "lp 3dmakelocal :p
   localmake "lz 3dz :lp
-  if or :lz < -490 :.3doldz < -490 [pu]
-  setxy ((3dx :lp) * 500 / (:lz + 500)) ((3dy :lp) * 500 / (:lz + 500))
+  if :.3doldz < -490 [pu]
   make ".3doldz :lz
+  if :lz < -490 [stop]
+  setxy ((3dx :lp) * 500 / (:lz + 500)) ((3dy :lp) * 500 / (:lz + 500))
   pd
 end
 
