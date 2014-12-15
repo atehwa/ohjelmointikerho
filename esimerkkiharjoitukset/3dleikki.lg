@@ -1,0 +1,51 @@
+maailma "3dops
+
+to a
+  3dturnyaw -10
+end
+
+to d
+  3dturnyaw 10
+end
+
+to i
+  3dmove 3dunrotate [0 0 10]
+end
+
+to j
+  3dmove 3dunrotate [-10 0 0]
+end
+
+to k
+  3dmove 3dunrotate [0 0 -10]
+end
+
+to l
+  3dmove 3dunrotate [10 0 0]
+end
+
+to s
+  3dturnpitch -10
+end
+
+to w
+  3dturnpitch 10
+end
+
+to showaxes
+pu 3dsetpos [0 0 0] pd
+3dsetpos [100 0 0]
+3dsetpos [100 100 0]
+3dsetpos [0 100 0]
+3dsetpos [0 0 0]
+3dsetpos [0 0 100]
+3dsetpos [0 100 100]
+3dsetpos [100 100 100]
+3dsetpos [100 0 100]
+end
+
+to test3d
+  cs showaxes run rc
+  test3d
+end
+
