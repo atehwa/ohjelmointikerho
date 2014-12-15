@@ -9,21 +9,24 @@ valmis
 miten 3dlentosilmu :kivet :tie
   ohjaa
   pyyhi
-  3dpiirrä alkuun alus 3dpos firsts :kivet
-  odota 3
+  3dpiirrä alkuun (lista [] 7 alus 3dpos) :kivet
   törmää :kivet
+  odota 3
   3dlentosilmu päivitäkivet :kivet :tie
 valmis
 
 miten 3dpiirrä :oliot
   jos tyhjäkö :oliot [seis]
-  äp foreach eka :oliot "3dsetpos
-  3dsetpos eka eka :oliot
+  nimeä "olio eka :oliot
+  väri eka loput :olio
+  äläpiirrä
+  foreach vika :olio "3dsetpos
+  3dsetpos eka vika :olio
   3dpiirrä loput :oliot
 valmis
 
 miten alkukivet
-  anna map [satunnaiskivi ? * 300] luettele 2 12
+  anna map [satunnaiskivi ? * 1000] luettele 2 12
 valmis
 
 miten alus :paikka
@@ -44,25 +47,27 @@ valmis
 
 miten ohjaa
   luenäppis
-  jos painetaanko "a [3dturnyaw -15]
-  jos painetaanko "d [3dturnyaw 15]
-  jos painetaanko "s [3dturnpitch -15]
-  jos painetaanko "w [3dturnpitch 15]
-  3dmove 3dunrotate [0 0 10]
+  jos painetaanko "a [3dturnyaw -4]
+  jos painetaanko "d [3dturnyaw 4]
+  jos painetaanko "s [3dturnpitch -4]
+  jos painetaanko "w [3dturnpitch 4]
+  3dmove 3dunrotate [0 0 110]
 valmis
 
 miten päivitäkivet :kivet
-  anna filter [-500 < 3dz 3dmakelocal vika ?] :kivet
+  nimeä "jäljellä filter [-500 < 3dz 3dmakelocal eka ?] :kivet
+  jos 10 < pituus :jäljellä [anna :jäljellä]
+  anna alkuun satunnaiskivi 4500 :jäljellä
 valmis
 
 miten satunnaiskivi :etäisyys
   nimeä "kohta 3dadd 3dpos 3dunrotate 3dpoint 300 - sat 600 300 - sat 600 :etäisyys
-  anna list kivi :kohta :kohta
+  anna (list :kohta sat 16 kivi :kohta)
 valmis
 
 miten törmää :kivet
   jos tyhjäkö :kivet [seis]
-  nimeä "kivenpaikka vika eka :kivet
+  nimeä "kivenpaikka eka eka :kivet
   nimeä "omapaikka 3dpos
   nimeä "xd (3dx :kivenpaikka) - (3dx :omapaikka)
   nimeä "yd (3dy :kivenpaikka) - (3dy :omapaikka)
