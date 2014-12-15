@@ -34,7 +34,14 @@ to 3dpos
 end
 
 to 3drotate :p
-  op 3dadd 3dadd 3dmul 3dx :p 3dx 3dori 3dmul 3dy :p 3dy 3dori 3dmul 3dz :p 3dz 3dori
+  ; op 3dadd 3dadd 3dmul 3dx :p 3dx 3dori 3dmul 3dy :p 3dy 3dori 3dmul 3dz :p 3dz 3dori
+  localmake "x 3dx :p
+  localmake "y 3dy :p
+  localmake "z 3dz :p
+  localmake "xv 3dx 3dori
+  localmake "yv 3dy 3dori
+  localmake "zv 3dz 3dori
+  op 3dpoint (:x * (3dx :xv) + :y * (3dx :yv) + :z * (3dx :zv)) (:x * (3dy :xv) + :y * (3dy :yv) + :z * (3dy :zv)) (:x * (3dz :xv) + :y * (3dz :yv) + :z * (3dz :zv))
 end
 
 to 3drotxz :theta :dir
@@ -75,7 +82,7 @@ to 3dturnyaw :theta
 end
 
 to 3dunrotate :p
-  op 3dpoint dotprod :p 3dx 3dori dotprod :p 3dy 3dori dotprod :p 3dz 3dori
+  op 3dpoint 3ddotprod :p 3dx 3dori 3ddotprod :p 3dy 3dori 3ddotprod :p 3dz 3dori
 end
 
 to 3dx :p
@@ -90,7 +97,8 @@ to 3dz :p
   op last :p
 end
 
-to dotprod :p1 :p2
-  op apply "sum (map [?1 * ?2] :p1 :p2)
+to 3ddotprod :p1 :p2
+  ; op apply "sum (map [?1 * ?2] :p1 :p2)
+  op (3dx :p1) * (3dx :p2) + (3dy :p1) * (3dy :p2) + (3dz :p1) * (3dz :p2)
 end
 
