@@ -8,7 +8,7 @@ valmis
 
 miten 3dlentosilmu :kivet :tie
   ohjaa
-  cs
+  pyyhi
   3dpiirrä alkuun alus 3dpos firsts :kivet
   odota 3
   törmää :kivet
@@ -23,7 +23,7 @@ miten 3dpiirrä :oliot
 valmis
 
 miten alkukivet
-  op map [satunnaiskivi ? * 300] luettele 2 20
+  anna map [satunnaiskivi ? * 300] luettele 2 12
 valmis
 
 miten alus :paikka
@@ -39,7 +39,7 @@ miten kivi :keskus
     nimeä "z :yz * sin kerta * 20
     push "pisteet 3dadd :keskus 3dpoint :x :y :z
   ]
-  op :pisteet
+  anna :pisteet
 valmis
 
 miten ohjaa
@@ -52,12 +52,12 @@ miten ohjaa
 valmis
 
 miten päivitäkivet :kivet
-  op :kivet
+  anna filter [-500 < 3dz 3dmakelocal vika ?] :kivet
 valmis
 
 miten satunnaiskivi :etäisyys
-  nimeä "kohta 3dadd 3dpos 3dunrotate 3dpoint 100 - sat 200 100 - sat 200 :etäisyys
-  op list kivi :kohta :kohta
+  nimeä "kohta 3dadd 3dpos 3dunrotate 3dpoint 300 - sat 600 300 - sat 600 :etäisyys
+  anna list kivi :kohta :kohta
 valmis
 
 miten törmää :kivet
