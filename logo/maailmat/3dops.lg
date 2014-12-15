@@ -5,6 +5,8 @@ end
 to 3dhome
   make ".3ddisp 3dpoint 0 0 0
   make ".3dorient (list 3dpoint 1 0 0 3dpoint 0 1 0 3dpoint 0 0 1)
+  make ".3doldz 0
+  window hideturtle
 end
 
 to 3dmakelocal :p
@@ -46,7 +48,10 @@ end
 to 3dsetpos :p
   localmake "lp 3dmakelocal :p
   localmake "lz 3dz :lp
+  if or :lz < -490 :.3doldz < -490 [pu]
   setxy ((3dx :lp) * 500 / (:lz + 500)) ((3dy :lp) * 500 / (:lz + 500))
+  make ".3doldz :lz
+  pd
 end
 
 to 3dshift :p
