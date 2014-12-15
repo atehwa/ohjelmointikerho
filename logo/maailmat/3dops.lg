@@ -1,0 +1,75 @@
+to 3dadd :p1 :p2
+  op (map "sum :p1 :p2)
+end
+
+to 3dhome
+  make ".3ddisp 3dpoint 0 0 0
+  make ".3dorient (list 3dpoint 1 0 0 3dpoint 0 1 0 3dpoint 0 0 1)
+end
+
+to 3dmakelocal :p
+  op 3drotate 3dshift :p
+end
+
+to 3dmove :displacement
+  make ".3ddisp 3dadd :.3ddisp 3dmul -1 :displacement
+end
+
+to 3dmul :scale :p
+  op map [? * :scale] :p
+end
+
+to 3dpoint :x :y :z
+  op (list :x :y :z)
+end
+
+to 3drotate :p
+  op 3dadd 3dadd 3dmul 3dx :p 3dx :.3dorient 3dmul 3dy :p 3dy :.3dorient 3dmul 3dz :p 3dz :.3dorient
+end
+
+to 3drotxz :theta :dir
+  localmake "x 3dx :dir
+  localmake "z 3dz :dir
+  localmake "rem cos :theta
+  localmake "cha sin :theta
+  op 3dpoint (:x * :rem - :z * :cha) 3dy :dir (:x * :cha + :z * :rem)
+end
+
+to 3drotyz :theta :dir
+  localmake "y 3dy :dir
+  localmake "z 3dz :dir
+  localmake "rem cos :theta
+  localmake "cha sin :theta
+  op 3dpoint 3dx :dir (:y * :rem - :z * :cha) (:y * :cha + :z * :rem)
+end
+
+to 3dsetpos :p
+  localmake "lp 3dmakelocal :p
+  localmake "lz 3dz :lp
+  setxy ((3dx :lp) * 500 / (:lz + 500)) ((3dy :lp) * 500 / (:lz + 500))
+end
+
+to 3dshift :p
+  op 3dadd :p :.3ddisp
+end
+
+to 3dturnpitch :theta
+  make ".3dorient map [3drotyz :theta ?] :.3dorient
+end
+
+to 3dturnyaw :theta
+  make ".3dorient map [3drotxz :theta ?] :.3dorient
+end
+
+to 3dx :p
+  op first :p
+end
+
+to 3dy :p
+  op first bf :p
+end
+
+to 3dz :p
+  op last :p
+end
+
