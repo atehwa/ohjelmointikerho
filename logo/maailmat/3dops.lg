@@ -61,6 +61,10 @@ to 3dturnyaw :theta
   make ".3dorient map [3drotxz :theta ?] :.3dorient
 end
 
+to 3dunrotate :p
+  op 3dpoint (dotprod :p 3dx :.3dorient) (dotprod :p 3dy :.3dorient) (dotprod :p 3dz :.3dorient)
+end
+
 to 3dx :p
   op first :p
 end
@@ -71,5 +75,9 @@ end
 
 to 3dz :p
   op last :p
+end
+
+to dotprod :p1 :p2
+  op apply "sum (map [?1 * ?2] :p1 :p2)
 end
 
