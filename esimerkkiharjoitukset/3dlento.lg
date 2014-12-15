@@ -35,11 +35,11 @@ valmis
 
 miten kivi :keskus
   nimeä "pisteet []
-  toista 18 [
+  toista 10 [
     nimeä "x 100 - satunnainen 200
     nimeä "yz sqrt 10000 - :x*:x
-    nimeä "y :yz * cos kerta * 20
-    nimeä "z :yz * sin kerta * 20
+    nimeä "y :yz * cos kerta * 36
+    nimeä "z :yz * sin kerta * 36
     push "pisteet 3dadd :keskus 3dpoint :x :y :z
   ]
   anna :pisteet
@@ -57,12 +57,12 @@ valmis
 miten päivitäkivet :kivet
   nimeä "jäljellä filter [-500 < 3dz 3dmakelocal eka ?] :kivet
   jos 10 < pituus :jäljellä [anna :jäljellä]
-  anna alkuun satunnaiskivi 4500 :jäljellä
+  anna alkuun satunnaiskivi 2000 + sat 2500 :jäljellä
 valmis
 
 miten satunnaiskivi :etäisyys
   nimeä "kohta 3dadd 3dpos 3dunrotate 3dpoint 300 - sat 600 300 - sat 600 :etäisyys
-  anna (list :kohta sat 16 kivi :kohta)
+  anna (list :kohta (1 + sat 16) kivi :kohta)
 valmis
 
 miten törmää :kivet
